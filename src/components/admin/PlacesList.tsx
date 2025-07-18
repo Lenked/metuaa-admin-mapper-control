@@ -57,7 +57,7 @@ export function PlacesList() {
   const handleFilterChange = (key: keyof PlaceFilter, value: string) => {
     setFilters(prev => ({
       ...prev,
-      [key]: value || undefined
+      [key]: value === 'all' ? undefined : value || undefined
     }));
   };
 
@@ -141,7 +141,7 @@ export function PlacesList() {
                 <SelectValue placeholder="Statut" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Tous les statuts</SelectItem>
+                <SelectItem value="all">Tous les statuts</SelectItem>
                 <SelectItem value="pending">En attente</SelectItem>
                 <SelectItem value="synchronized">Validé</SelectItem>
                 <SelectItem value="rejected">Rejeté</SelectItem>
@@ -153,7 +153,7 @@ export function PlacesList() {
                 <SelectValue placeholder="Catégorie" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Toutes les catégories</SelectItem>
+                <SelectItem value="all">Toutes les catégories</SelectItem>
                 <SelectItem value="university">Université</SelectItem>
                 <SelectItem value="school">École</SelectItem>
                 <SelectItem value="restaurant">Restaurant</SelectItem>

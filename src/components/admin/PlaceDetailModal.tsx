@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Place } from "@/types/places";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,10 +20,13 @@ import {
   Navigation,
   Check,
   X,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Phone,
+  Mail
 } from "lucide-react";
 import { ValidateModal } from "./ValidateModal";
 import { RejectModal } from "./RejectModal";
+import { PlacesAPI } from "@/services/api";
 
 interface PlaceDetailModalProps {
   place: Place;
@@ -33,6 +36,8 @@ interface PlaceDetailModalProps {
 
 export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps) {
   const [modalType, setModalType] = useState<'validate' | 'reject' | null>(null);
+  const [userInfo, setUserInfo] = useState<any>(null);
+  const [loadingUser, setLoadingUser] = useState(false);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -70,6 +75,27 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
   const closeActionModal = () => {
     setModalType(null);
   };
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      if (place.source_id && open) {
+        setLoadingUser(true);
+        try {
+          const response = await PlacesAPI.getUserInfo(place.source_id);
+          if (response.success && response.data && response.data.length > 0) {
+            setUserInfo(response.data[0]);
+          }
+        } catch (error) {
+          console.error('Error fetching user info:', error);
+          setUserInfo(null);
+        } finally {
+          setLoadingUser(false);
+        }
+      }
+    };
+
+    fetchUserInfo();
+  }, [place.source_id, open]);
 
   const parseImages = (imageData: string): string[] => {
     try {
@@ -138,11 +164,12 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
           </DialogHeader>
 
           <Tabs defaultValue="general" className="w-full">
-            <TabsList className="grid w-full grid-cols-5">
+            <TabsList className="grid w-full grid-cols-6">
               <TabsTrigger value="general">Général</TabsTrigger>
               <TabsTrigger value="images">
                 Images {images.length > 0 && <span className="ml-1 text-xs">({images.length})</span>}
               </TabsTrigger>
+              <TabsTrigger value="user">Utilisateur</TabsTrigger>
               <TabsTrigger value="location">Localisation</TabsTrigger>
               <TabsTrigger value="properties">Propriétés</TabsTrigger>
               <TabsTrigger value="history">Historique</TabsTrigger>
@@ -258,6 +285,88 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                           </div>
                         ))}
                       </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="user" className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <User className="w-5 h-5" />
+                    Informations de l'utilisateur créateur
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {loadingUser ? (
+                    <div className="text-center py-8">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                      <p className="text-muted-foreground mt-2">Chargement des informations utilisateur...</p>
+                    </div>
+                  ) : userInfo ? (
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Nom complet</label>
+                          <p className="font-medium">{userInfo.name}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Matricule</label>
+                          <p className="font-mono text-sm">{userInfo.matricule}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Email</label>
+                          <p className="flex items-center gap-2">
+                            <Mail className="w-4 h-4" />
+                            {userInfo.email || 'Non disponible'}
+                          </p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Téléphone</label>
+                          <p className="flex items-center gap-2">
+                            <Phone className="w-4 h-4" />
+                            {userInfo.mobile || userInfo.phone || 'Non disponible'}
+                          </p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Type de partenaire</label>
+                          <p className="capitalize">{userInfo.partner_type || 'Non spécifié'}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Statut</label>
+                          <Badge variant={userInfo.user_status === 'approved' ? 'default' : 'secondary'}>
+                            {userInfo.user_status === 'approved' ? 'Approuvé' : userInfo.user_status}
+                          </Badge>
+                        </div>
+                      </div>
+                      
+                      {userInfo.function && (
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Fonction</label>
+                          <p>{userInfo.function}</p>
+                        </div>
+                      )}
+                      
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Date de création</label>
+                          <p>{new Date(userInfo.create_date).toLocaleString('fr-FR')}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Dernière modification</label>
+                          <p>{new Date(userInfo.write_date).toLocaleString('fr-FR')}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <User className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                      <p className="text-muted-foreground">Informations utilisateur non disponibles</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Matricule: {place.source_id}
+                      </p>
                     </div>
                   )}
                 </CardContent>

@@ -30,7 +30,7 @@ export interface Place {
   properties_wikipedia: string;
   properties_description: string;
   properties_image: string;
-  status: 'pending' | 'synchronized' | 'rejected';
+  status: 'pending' | 'synchronized' | 'rejected' | 'accepted';
   date_added: string;
   list_images: string;
   create_uid: Array<{

@@ -23,8 +23,8 @@ export function DashboardStats() {
         
         setStats({
           total: places.length,
-          pending: places.filter(p => p.status === 'pending').length,
-          validated: places.filter(p => p.status === 'synchronized').length,
+          pending: places.filter(p => p.status === 'pending' || p.status === 'synchronized').length,
+          validated: places.filter(p => p.status === 'accepted').length,
           rejected: places.filter(p => p.status === 'rejected').length,
           loading: false
         });
@@ -48,6 +48,8 @@ export function DashboardStats() {
       case 'pending':
         return <Badge variant="secondary">En attente</Badge>;
       case 'synchronized':
+        return <Badge variant="secondary">En attente</Badge>;
+      case 'accepted':
         return <Badge className="bg-success text-success-foreground">Validé</Badge>;
       case 'rejected':
         return <Badge variant="destructive">Rejeté</Badge>;

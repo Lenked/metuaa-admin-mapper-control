@@ -38,6 +38,8 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
       case 'pending':
         return <Badge variant="secondary">En attente</Badge>;
       case 'synchronized':
+        return <Badge variant="secondary">En attente</Badge>;
+      case 'accepted':
         return <Badge className="bg-success text-success-foreground">Validé</Badge>;
       case 'rejected':
         return <Badge variant="destructive">Rejeté</Badge>;
@@ -191,16 +193,30 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                     </div>
                   </div>
 
-                  {/* Simple map placeholder */}
-                  <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                      <MapPin className="w-8 h-8 mx-auto mb-2" />
-                      <p>Carte de localisation</p>
-                      <p className="text-xs">
-                        {place.centroid_lat.toFixed(6)}, {place.centroid_lon.toFixed(6)}
-                      </p>
+                  {/* Carte de localisation ou fallback coordonnées */}
+                  {place.centroid_lat && place.centroid_lon ? (
+                    <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
+                      <iframe
+                        title="Carte de localisation"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0, borderRadius: '0.5rem', minHeight: '16rem' }}
+                        src={`https://www.openstreetmap.org/export/embed.html?bbox=${place.centroid_lon-0.005}%2C${place.centroid_lat-0.005}%2C${place.centroid_lon+0.005}%2C${place.centroid_lat+0.005}&layer=mapnik&marker=${place.centroid_lat}%2C${place.centroid_lon}`}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
+                      <div className="text-center text-muted-foreground">
+                        <MapPin className="w-8 h-8 mx-auto mb-2" />
+                        <p>Carte de localisation non disponible</p>
+                        <p className="text-xs">
+                          {place.centroid_lat?.toFixed(6)}, {place.centroid_lon?.toFixed(6)}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>

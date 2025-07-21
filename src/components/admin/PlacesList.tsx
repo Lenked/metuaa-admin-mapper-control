@@ -30,6 +30,7 @@ export function PlacesList() {
   const [places, setPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<PlaceFilter>({});
+  const [searchInput, setSearchInput] = useState(''); // Ajout état local pour la recherche
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
   const [modalType, setModalType] = useState<'validate' | 'reject' | 'detail' | null>(null);
   const { toast } = useToast();
@@ -50,15 +51,30 @@ export function PlacesList() {
     }
   };
 
+  // Debounce pour la recherche
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilters(prev => ({
+        ...prev,
+        search: searchInput || undefined
+      }));
+    }, 1000); // 1000ms de délai
+    return () => clearTimeout(handler);
+  }, [searchInput]);
+
   useEffect(() => {
     loadPlaces();
   }, [filters]);
 
   const handleFilterChange = (key: keyof PlaceFilter, value: string) => {
-    setFilters(prev => ({
-      ...prev,
-      [key]: value === 'all' ? undefined : value || undefined
-    }));
+    if (key === 'search') {
+      setSearchInput(value);
+    } else {
+      setFilters(prev => ({
+        ...prev,
+        [key]: value === 'all' ? undefined : value || undefined
+      }));
+    }
   };
 
   const openModal = (type: 'validate' | 'reject' | 'detail', place: Place) => {
@@ -81,6 +97,8 @@ export function PlacesList() {
       case 'pending':
         return <Badge variant="secondary">En attente</Badge>;
       case 'synchronized':
+        return <Badge variant="secondary">En attente</Badge>;
+      case 'accepted':
         return <Badge className="bg-success text-success-foreground">Validé</Badge>;
       case 'rejected':
         return <Badge variant="destructive">Rejeté</Badge>;
@@ -130,7 +148,7 @@ export function PlacesList() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder="Rechercher un lieu..."
-                value={filters.search || ''}
+                value={searchInput}
                 onChange={(e) => handleFilterChange('search', e.target.value)}
                 className="pl-10"
               />
@@ -220,7 +238,7 @@ export function PlacesList() {
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-2">
-                      {place.status === 'pending' && (
+                      {place.status === 'pending' || place.status === 'synchronized' && (
                         <>
                           <Button
                             size="sm"

@@ -123,7 +123,10 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
   };
 
   const images = parseImages(place.properties_image);
-  const listImages = place.images || [];
+  // Correction du typage pour listImages
+  const listImages: { image_data: string }[] = Array.isArray(place.images) && place.images.length > 0 && typeof place.images[0] === 'object' && 'image_data' in place.images[0]
+    ? (place.images as { image_data: string }[])
+    : (Array.isArray(place.images) ? place.images.map(img => ({ image_data: typeof img === 'string' ? img : '' })) : []);
 
   return (
     <>
@@ -231,13 +234,13 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       </p>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {images.map((imageBase64, index) => (
-                          <div key={index} className="space-y-2">
+                      {listImages.map((imageBase64, index) => (
+                          <div key={`list-${index}`} className="space-y-2">
                             <div className="relative group">
                               <img
-                                src={`data:image/jpeg;base64,${imageBase64}`}
-                                alt={`Image ${index + 1} de ${place.name}`}
-                                className="w-full h-48 object-cover rounded-lg border border-border"
+                                src={imageBase64.image_data}
+                                alt={`Image liste ${index + 1} de ${place.name}`}
+                                className="w-full h-48 object-cover rounded-lg border border-border opacity-80"
                                 onError={(e) => {
                                   e.currentTarget.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlmYTNhOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vbiBkaXNwb25pYmxlPC90ZXh0Pjwvc3ZnPg==";
                                 }}
@@ -260,7 +263,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                   )}
 
                   {/* Affichage des images de la liste si différentes */}
-                  {listImages.length > 0 && listImages.join(',') !== images.join(',') && (
+                  {/* {listImages.length > 0 && listImages.join(',') !== images.join(',') && (
                     <div className="mt-8 pt-6 border-t">
                       <h4 className="font-medium mb-4 flex items-center gap-2">
                         <ImageIcon className="w-4 h-4" />
@@ -271,7 +274,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                           <div key={`list-${index}`} className="space-y-2">
                             <div className="relative group">
                               <img
-                                src={`data:image/jpeg;base64,${imageBase64}`}
+                                src={imageBase64.image_data}
                                 alt={`Image liste ${index + 1} de ${place.name}`}
                                 className="w-full h-48 object-cover rounded-lg border border-border opacity-80"
                                 onError={(e) => {
@@ -288,7 +291,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                         ))}
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </CardContent>
               </Card>
             </TabsContent>

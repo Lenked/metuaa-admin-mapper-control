@@ -6,7 +6,7 @@ const API_KEY_SESSION = 'b8a7c8e9f0d1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d
 
 const getHeaders = () => ({
   'Content-Type': 'application/json',
-  'X-API-KEY': API_KEY_SESSION
+  'x-api-key': API_KEY_SESSION
 });
 
 export class PlacesAPI {

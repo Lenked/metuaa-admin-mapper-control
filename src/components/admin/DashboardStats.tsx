@@ -18,8 +18,8 @@ export function DashboardStats() {
   useEffect(() => {
     const loadStats = async () => {
       try {
-        const response = await PlacesAPI.searchPlaces({});
-        const places = response.data || [];
+        const response = await PlacesAPI.syncPoisFromOdoo();
+        const places = response || [];
         
         setStats({
           total: places.length,

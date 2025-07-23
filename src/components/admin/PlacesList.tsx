@@ -38,8 +38,8 @@ export function PlacesList() {
   const loadPlaces = async () => {
     try {
       setLoading(true);
-      const response = await PlacesAPI.searchPlaces(filters);
-      setPlaces(response.data || []);
+      const response = await PlacesAPI.syncPoisFromOdoo()
+      setPlaces(response || []);
     } catch (error) {
       toast({
         title: "Erreur",

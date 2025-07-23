@@ -68,17 +68,17 @@ export class PlacesAPI {
   }
 
   // Recherche côté frontend uniquement (pas d'appel API)
-  static searchPlaces(places: any[], filters: { status?: string; category?: string; locality?: string; search?: string }): any[] {
+  static searchPlaces(places: any[], filters: { validation_status?: string; category?: string; locality?: string; search?: string }): any[] {
     return places.filter(place => {
       let match = true;
-      if (filters.status) match = match && place.status === filters.status;
-      if (filters.category) match = match && place.category === filters.category;
-      if (filters.locality) match = match && place.locality === filters.locality;
+      if (filters.validation_status) match = match && place.validation_status === filters.validation_status;
+      if (filters.category) match = match && place.properties_category === filters.category;
+      if (filters.locality) match = match && place.address_locality === filters.locality;
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
         match = match && (
           (place.name && place.name.toLowerCase().includes(searchLower)) ||
-          (place.description && place.description.toLowerCase().includes(searchLower))
+          (place.properties_description && place.properties_description.toLowerCase().includes(searchLower))
         );
       }
       return match;

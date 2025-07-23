@@ -123,7 +123,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
   };
 
   const images = parseImages(place.properties_image);
-  const listImages = parseImages(place.list_images);
+  const listImages = place.images || [];
 
   return (
     <>
@@ -137,12 +137,12 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                   {place.name}
                 </DialogTitle>
                 <div className="flex items-center gap-2">
-                  {getStatusBadge(place.status)}
+                  {getStatusBadge(place.validation_status)}
                   <Badge variant="outline">ID: {place.id}</Badge>
                 </div>
               </div>
               
-              {place.status === 'pending' && (
+              {(place.validation_status === 'pending' || place.validation_status === 'synchronized') && (
                 <div className="flex gap-2">
                   <Button
                     size="sm"
@@ -500,7 +500,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                     </div>
                     <div>
                       <label className="text-sm font-medium text-muted-foreground">Statut</label>
-                      <p className="capitalize">{place.status}</p>
+                      <p className="capitalize">{place.validation_status}</p>
                     </div>
                   </div>
 
@@ -536,32 +536,6 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
-                    <div className="border-l-2 border-primary pl-4">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        <span className="font-medium">Création</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {new Date(place.create_date).toLocaleString('fr-FR')}
-                      </p>
-                      <p className="text-sm">
-                        Par {place.create_uid?.[0]?.name || 'Utilisateur inconnu'}
-                      </p>
-                    </div>
-
-                    <div className="border-l-2 border-muted pl-4">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        <span className="font-medium">Dernière modification</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {new Date(place.write_date).toLocaleString('fr-FR')}
-                      </p>
-                      <p className="text-sm">
-                        Par {place.write_uid?.[0]?.name || 'Utilisateur inconnu'}
-                      </p>
-                    </div>
-
                     <div className="border-l-2 border-accent pl-4">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
@@ -570,6 +544,9 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       <p className="text-sm text-muted-foreground">
                         {new Date(place.date_added).toLocaleString('fr-FR')}
                       </p>
+                    </div>
+                    <div className="text-center py-4 text-muted-foreground">
+                      <p className="text-sm">Historique détaillé non disponible avec la nouvelle structure</p>
                     </div>
                   </div>
                 </CardContent>

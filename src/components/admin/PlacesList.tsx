@@ -38,7 +38,7 @@ export function PlacesList() {
   const loadPlaces = async () => {
     try {
       setLoading(true);
-      const response = await PlacesAPI.syncPoisFromOdoo()
+      const response = await PlacesAPI.syncPoisFromOdoo();
       setPlaces(response || []);
     } catch (error) {
       toast({
@@ -64,7 +64,10 @@ export function PlacesList() {
 
   useEffect(() => {
     loadPlaces();
-  }, [filters]);
+  }, []);
+
+  // Filtrer les lieux côté frontend
+  const filteredPlaces = PlacesAPI.searchPlaces(places, filters);
 
   const handleFilterChange = (key: keyof PlaceFilter, value: string) => {
     if (key === 'search') {
@@ -92,8 +95,8 @@ export function PlacesList() {
     loadPlaces(); // Refresh the list
   };
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
+  const getStatusBadge = (validation_status: string) => {
+    switch (validation_status) {
       case 'pending':
         return <Badge variant="secondary">En attente</Badge>;
       case 'synchronized':
@@ -103,7 +106,7 @@ export function PlacesList() {
       case 'rejected':
         return <Badge variant="destructive">Rejeté</Badge>;
       default:
-        return <Badge variant="outline">{status}</Badge>;
+        return <Badge variant="outline">{validation_status}</Badge>;
     }
   };
 
@@ -154,7 +157,7 @@ export function PlacesList() {
               />
             </div>
             
-            <Select onValueChange={(value) => handleFilterChange('status', value)}>
+            <Select onValueChange={(value) => handleFilterChange('validation_status', value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Statut" />
               </SelectTrigger>
@@ -195,7 +198,7 @@ export function PlacesList() {
       {/* Results count */}
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
-          {places.length} lieu{places.length !== 1 ? 'x' : ''} trouvé{places.length !== 1 ? 's' : ''}
+          {filteredPlaces.length} lieu{filteredPlaces.length !== 1 ? 'x' : ''} trouvé{filteredPlaces.length !== 1 ? 's' : ''}
         </p>
         <Button onClick={loadPlaces} variant="outline" size="sm">
           Actualiser
@@ -217,7 +220,7 @@ export function PlacesList() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {places.map((place) => (
+              {filteredPlaces.map((place) => (
                 <TableRow key={place.id}>
                   <TableCell>
                     <div className="flex items-center gap-2">
@@ -232,13 +235,13 @@ export function PlacesList() {
                   </TableCell>
                   <TableCell>{getCategoryLabel(place.properties_category)}</TableCell>
                   <TableCell>{place.address_locality}</TableCell>
-                  <TableCell>{getStatusBadge(place.status)}</TableCell>
+                  <TableCell>{getStatusBadge(place.validation_status)}</TableCell>
                   <TableCell>
                     {new Date(place.date_added).toLocaleDateString('fr-FR')}
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-2">
-                      {place.status === 'pending' || place.status === 'synchronized' && (
+                      {(place.validation_status === 'pending' || place.validation_status === 'synchronized') && (
                         <>
                           <Button
                             size="sm"
@@ -272,7 +275,7 @@ export function PlacesList() {
             </TableBody>
           </Table>
           
-          {places.length === 0 && (
+          {filteredPlaces.length === 0 && (
             <div className="text-center py-12">
               <MapPin className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Aucun lieu trouvé</h3>

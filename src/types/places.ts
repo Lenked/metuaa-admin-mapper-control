@@ -1,5 +1,6 @@
 export interface Place {
   id: number;
+  odoo_id: number;
   type: string;
   source: string;
   source_id: string;
@@ -23,26 +24,16 @@ export interface Place {
   address_county_gid: string;
   address_neighbourhood: string;
   address_plus_code: string;
-  properties_attraction: number;
+  properties_attraction: string;
   properties_category: string;
   properties_subcategory: string;
   properties_wikidata: string;
   properties_wikipedia: string;
   properties_description: string;
   properties_image: string;
-  status: 'pending' | 'synchronized' | 'rejected' | 'accepted';
+  images: string[];
+  validation_status: string;
   date_added: string;
-  list_images: string;
-  create_uid: Array<{
-    id: number;
-    name: string;
-  }>;
-  create_date: string;
-  write_uid: Array<{
-    id: number;
-    name: string;
-  }>;
-  write_date: string;
 }
 
 export interface PlacesResponse {
@@ -62,7 +53,7 @@ export interface PlacesResponse {
 }
 
 export interface PlaceFilter {
-  status?: string;
+  validation_status?: string;
   category?: string;
   locality?: string;
   search?: string;

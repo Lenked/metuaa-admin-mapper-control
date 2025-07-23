@@ -1,123 +1,96 @@
 import { PlacesResponse, PlaceFilter } from '@/types/places';
 
-const API_BASE_URL = 'https://dev.metuaa.com/api';
-const API_KEY = 'EKJ0BDHKQ2MGNV3S26GVFMV3ZXSN1DMK';
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImFkbWluQG1ldHVhYS5vcmciLCJ1aWQiOjJ9.IVq2qul-eEnyvdhaFndrLK5WDZ0A0-uOKTJ7QV8mhWw';
+// Nouvelle configuration pour l'API locale
+const API_BASE_URL = 'http://127.0.0.1:8001'; // À modifier facilement plus tard
+const API_KEY_SESSION = 'b8a7c8e9f0d1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7';
 
 const getHeaders = () => ({
   'Content-Type': 'application/json',
-  'api-key': API_KEY,
-  'token': TOKEN
+  'X-API-KEY': API_KEY_SESSION
 });
 
 export class PlacesAPI {
-  static async getPendingPlaces(): Promise<PlacesResponse> {
+  // Appels au backend local
+  static async getPendingPois(): Promise<any> {
     try {
-      const response = await fetch(`${API_BASE_URL}/places/search`, {
+      const response = await fetch(`${API_BASE_URL}/api/pois/pending`, {
         method: 'GET',
         headers: getHeaders()
       });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      // Filter for pending places only
-      const filteredData = {
-        ...data,
-        data: data.data?.filter((place: any) => place.status === 'pending') || []
-      };
-      
-      return filteredData;
-    } catch (error) {
-      console.error('Error fetching pending places:', error);
-      throw error;
-    }
-  }
-
-  static async searchPlaces(filters: PlaceFilter): Promise<PlacesResponse> {
-    try {
-      const queryParams = new URLSearchParams();
-      
-      if (filters.status) queryParams.append('status', filters.status);
-      if (filters.category) queryParams.append('category', filters.category);
-      if (filters.locality) queryParams.append('locality', filters.locality);
-      if (filters.search) queryParams.append('search', filters.search);
-
-      const response = await fetch(`${API_BASE_URL}/places/search?${queryParams.toString()}`, {
-        method: 'GET',
-        headers: getHeaders()
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       return await response.json();
     } catch (error) {
-      console.error('Error searching places:', error);
+      console.error('Error fetching pending pois:', error);
       throw error;
     }
   }
 
-  static async validatePlace(id: number): Promise<any> {
+  static async getApprovedPois(): Promise<any> {
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/validate/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/pois/approved`, {
+        method: 'GET',
+        headers: getHeaders()
+      });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching approved pois:', error);
+      throw error;
+    }
+  }
+
+  static async getRejectedPois(): Promise<any> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/pois/rejected`, {
+        method: 'GET',
+        headers: getHeaders()
+      });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching rejected pois:', error);
+      throw error;
+    }
+  }
+
+  static async syncPoisFromOdoo(): Promise<any> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/pois/sync-from-odoo`, {
         method: 'POST',
         headers: getHeaders()
       });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       return await response.json();
     } catch (error) {
-      console.error('Error validating place:', error);
+      console.error('Error syncing pois from odoo:', error);
       throw error;
     }
+  }
+
+  // Recherche côté frontend uniquement (pas d'appel API)
+  static searchPlaces(places: any[], filters: { status?: string; category?: string; locality?: string; search?: string }): any[] {
+    return places.filter(place => {
+      let match = true;
+      if (filters.status) match = match && place.status === filters.status;
+      if (filters.category) match = match && place.category === filters.category;
+      if (filters.locality) match = match && place.locality === filters.locality;
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        match = match && (
+          (place.name && place.name.toLowerCase().includes(searchLower)) ||
+          (place.description && place.description.toLowerCase().includes(searchLower))
+        );
+      }
+      return match;
+    });
+  }
+
+  // À implémenter plus tard
+  static async validatePlace(id: number): Promise<any> {
+    // À faire plus tard
   }
 
   static async rejectPlace(id: number, reason: string, comment?: string): Promise<any> {
-    try {
-      const response = await fetch(`${API_BASE_URL}/admin/reject/${id}`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify({
-          reason,
-          comment
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      return await response.json();
-    } catch (error) {
-      console.error('Error rejecting place:', error);
-      throw error;
-    }
-  }
-
-  static async getUserInfo(matricule: string): Promise<any> {
-    try {
-      const domain = encodeURIComponent(`[('matricule','=','${matricule}')]`);
-      const response = await fetch(`${API_BASE_URL}/res.partner/search?domain=${domain}`, {
-        method: 'GET',
-        headers: getHeaders()
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      return await response.json();
-    } catch (error) {
-      console.error('Error fetching user info:', error);
-      throw error;
-    }
+    // À faire plus tard
   }
 }

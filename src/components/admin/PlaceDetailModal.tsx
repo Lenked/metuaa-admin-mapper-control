@@ -27,6 +27,7 @@ import {
 import { ValidateModal } from "./ValidateModal";
 import { RejectModal } from "./RejectModal";
 import { PlacesAPI } from "@/services/api";
+import { OdooAPI } from "@/services/odoo";
 
 interface PlaceDetailModalProps {
   place: Place;
@@ -38,6 +39,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
   const [modalType, setModalType] = useState<'validate' | 'reject' | null>(null);
   const [userInfo, setUserInfo] = useState<any>(null);
   const [loadingUser, setLoadingUser] = useState(false);
+  const [showMapPopup, setShowMapPopup] = useState(false);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -81,7 +83,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
       if (place.source_id && open) {
         setLoadingUser(true);
         try {
-          const response = await PlacesAPI.getUserInfo(place.source_id);
+          const response = await OdooAPI.getUserInfo(place.source_id);
           if (response.success && response.data && response.data.length > 0) {
             setUserInfo(response.data[0]);
           }
@@ -412,7 +414,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
 
                   {/* Carte de localisation ou fallback coordonnées */}
                   {place.centroid_lat && place.centroid_lon ? (
-                    <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
+                    <div className="bg-muted rounded-lg h-64 flex items-center justify-center relative overflow-hidden">
                       <iframe
                         title="Carte de localisation"
                         width="100%"
@@ -421,7 +423,43 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                         src={`https://www.openstreetmap.org/export/embed.html?bbox=${place.centroid_lon-0.005}%2C${place.centroid_lat-0.005}%2C${place.centroid_lon+0.005}%2C${place.centroid_lat+0.005}&layer=mapnik&marker=${place.centroid_lat}%2C${place.centroid_lon}`}
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
+                        id="osm-map-iframe"
                       ></iframe>
+                      {/* Marqueur custom en overlay + popup au clic */}
+                      <button
+                        type="button"
+                        className="absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                        style={{ background: 'none', border: 'none', outline: 'none' }}
+                        onClick={() => setShowMapPopup(true)}
+                        aria-label="Afficher les détails du point"
+                      >
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="16" cy="16" r="12" fill="#2563eb" stroke="#fff" strokeWidth="3" />
+                          <circle cx="16" cy="16" r="5" fill="#fff" />
+                        </svg>
+                      </button>
+                      {showMapPopup && (
+                        <div
+                          className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-16 bg-white rounded-lg shadow-lg p-4 min-w-[220px] border border-border animate-fade-in"
+                          style={{ minWidth: 220 }}
+                        >
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="font-semibold text-primary">{place.name}</span>
+                            <button
+                              className="ml-2 text-gray-400 hover:text-gray-700"
+                              onClick={() => setShowMapPopup(false)}
+                              aria-label="Fermer la popup"
+                            >
+                              ×
+                            </button>
+                          </div>
+                          <div className="text-xs text-muted-foreground mb-1">{place.address_name || place.address_locality}</div>
+                          <div className="text-xs text-muted-foreground">
+                            Lat: {place.centroid_lat.toFixed(6)}<br />
+                            Lon: {place.centroid_lon.toFixed(6)}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
@@ -565,6 +603,15 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
           }}
         />
       )}
+      <style>{`
+  @keyframes fade-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+`}</style>
     </>
   );
 }

@@ -1,0 +1,3469 @@
+{
+  "Utilitaires": {
+    "Éducation": [
+      {
+        "label": {
+          "fr": "Université",
+          "en": "University"
+        },
+        "tag": "university"
+      },
+      {
+        "label": {
+          "fr": "École",
+          "en": "school"
+        },
+        "tag": "school"
+      },
+      {
+        "label": {
+          "fr": "Jardin d'enfants",
+          "en": "Kindergarten"
+        },
+        "tag": "kindergarten"
+      },
+      {
+        "label" : {
+          "fr" : "Collège",
+          "en" : "College"
+        },
+        "tag" : "college"
+      },
+      {
+        "label": {
+          "fr": "École de langues",
+          "en": "language_school"
+        },
+        "tag": "language_school"
+      },
+      {
+        "label": {
+          "fr": "Bureau",
+          "en": "Office"
+        },
+        "tag": "office"
+      },
+      {
+        "label": {
+          "fr": "École préparatoire",
+          "en": "Prep School"
+        },
+        "tag": "prep_school"
+      },
+      {
+        "label": {
+          "fr": "Éducation pour adultes",
+          "en": "Adult Education"
+        },
+        "tag": "adult_education"
+      },
+      {
+        "label": {
+          "fr": "École de musique",
+          "en": "Music School"
+        },
+        "tag": "music_school"
+      },
+      {
+        "label": {
+          "fr": "École de musique",
+          "en": "Music School"
+        },
+        "tag": "music_school"
+      },
+      {
+        "label": {
+          "fr": "Centre de formation",
+          "en": "Training"
+        },
+        "tag": "training"
+      },
+      {
+        "label": {
+          "fr": "École d'art",
+          "en": "art_school"
+        },
+        "tag": "art_school"
+      },
+      {
+        "label": {
+          "fr": "École de commerce",
+          "en": "trade_school"
+        },
+        "tag": "trade_school"
+      }
+    ],
+    "Santé": [
+      {
+        "label": {
+          "fr": "Hôpital",
+          "en": "Hospital"
+        },
+        "tag": "hospital"
+      },
+      {
+        "label": {
+          "fr": "Clinique",
+          "en": "Clinic"
+        },
+        "tag": "clinic"
+      },
+      {
+        "label": {
+          "fr": "Pharmacie",
+          "en": "Pharmacy"
+        },
+        "tag": "pharmacy"
+      },
+      {
+        "label": {
+          "fr": "Médecin",
+          "en": "Doctors"
+        },
+        "tag": "doctors"
+      },
+      {
+        "label": {
+          "fr": "Dentiste",
+          "en": "Dentist"
+        },
+        "tag": "dentist"
+      },
+      {
+        "label": {
+          "fr": "Chemist",
+          "en": "Chemist"
+        },
+        "tag": "chemist"
+      },
+      {
+        "label": {
+          "fr": "Salon de bronzage",
+          "en": "tanning_salon"
+        },
+        "tag": "tanning_salon"
+      },
+      {
+        "label": {
+          "fr": "Retrait de tatouage",
+          "en": "tattoo_remover"
+        },
+        "tag": "tattoo_remover"
+      },
+      {
+        "label": {
+          "fr": "Pépinierie",
+          "en": "pet_grooming"
+        },
+        "tag": "pet_grooming"
+      },
+      {
+        "label": {
+          "fr": "Pharmacie",
+          "en": "pharmacy"
+        },
+        "tag": "pharmacy"
+      },
+      {
+        "label": {
+          "fr": "Hôpital",
+          "en": "hospital"
+        },
+        "tag": "hospital"
+      },
+      {
+        "label": {
+          "fr": "Centre médical",
+          "en": "Medical Centre"
+        },
+        "tag": "medical_centre"
+      },
+      {
+        "label": {
+          "fr": "Soins de santé",
+          "en": "Healthcare"
+        },
+        "tag": "healthcare"
+      },
+      {
+        "label": {
+          "fr": "Centre de santé",
+          "en": "Health Centre"
+        },
+        "tag": "health_centre"
+      },
+       {
+        "label": {
+          "fr": "Médecine alternative",
+          "en": "Alternative Medicine"
+        },
+        "tag": "alternative_medicine"
+      },
+       {
+        "label": {
+          "fr": "Homéopathie",
+          "en": "Homeopathy"
+        },
+        "tag": "homeopathy"
+      },
+       {
+        "label": {
+          "fr": "Département hospitalier",
+          "en": "Hospital Department"
+        },
+        "tag": "hospital_department"
+      },
+       {
+        "label": {
+          "fr": "Agence de soins",
+          "en": "Care Agency"
+        },
+        "tag": "Care_Agency"
+      },
+       {
+        "label": {
+          "fr": "Santé",
+          "en": "Health"
+        },
+        "tag": "health"
+      },
+       {
+        "label": {
+          "fr": "Spa",
+          "en": "Spa"
+        },
+        "tag": "spa"
+      },
+       {
+        "label": {
+          "fr": "Sauna",
+          "en": "Sauna"
+        },
+        "tag": "sauna"
+      },
+      {
+        "label": {
+          "fr": "Aides auditives",
+          "en": "Hearing Aids"
+        },
+        "tag": "hearing_aids"
+      },
+      {
+        "label": {
+          "fr": "Maison de retraite",
+          "en": "Nursing Home"
+        },
+        "tag": "nursing_home"
+      },
+      {
+          "label": {
+              "fr": "Herboriste",
+              "en": "Herbalist"
+          },
+          "tag": "herbalist"
+      }
+    ],
+    "Services": [
+      {
+        "label": {
+          "fr": "Déchetterie",
+          "en": "Waste disposal"
+        },
+        "tag": "waste_disposal"
+      },
+      {
+        "label": {
+          "fr": "Corbeille à papier",
+          "en": "Waste basket"
+        },
+        "tag": "waste_basket"
+      },
+      {
+        "label": {
+          "fr": "Recyclage",
+          "en": "Recycling"
+        },
+        "tag": "recycling"
+      },
+      {
+        "label": {
+          "fr": "Toilettes",
+          "en": "Toilets"
+        },
+        "tag": "toilets"
+      },
+      {
+        "label": {
+          "fr": "Conseils",
+          "en": "Advice"
+        },
+        "tag": "advice"
+      },
+      {
+        "label": {
+          "fr": "Téléphone",
+          "en": "Telephone"
+        },
+        "tag": "telephone"
+      },
+      {
+        "label": {
+          "fr": "Distributeur automatique",
+          "en": "ATM"
+        },
+        "tag": "atm"
+      },
+      {
+        "label": {
+          "fr": "Nettoyage à sec",
+          "en": "Dry Cleaning"
+        },
+        "tag": "dry_cleaning"
+      },
+      {
+        "label": {
+          "fr": "Réparation",
+          "en": "Repair"
+        },
+        "tag": "repair"
+      },
+      {
+        "label": {
+          "fr": "Réparation de chaussures",
+          "en": "Shoe Repair"
+        },
+        "tag": "shoe_repair"
+      },
+      {
+        "label": {
+          "fr": "Réparation de motos",
+          "en": "Motorcycle Repair"
+        },
+        "tag": "motorcycle_repair"
+      },
+        {
+        "label": {
+          "fr": "Coordonnées de couture",
+          "en": "Alteration"
+        },
+        "tag": "alteration"
+      },
+        {
+        "label": {
+          "fr": "Services d'ameublement",
+          "en": "Upholstery Services"
+        },
+        "tag": "upholstery_services"
+      },
+      {
+        "label": {
+          "fr": "Coupeur de clés",
+          "en": "Key Cutter"
+        },
+        "tag": "key_cutter"
+      },
+       {
+        "label": {
+          "fr": "Plombier",
+          "en": "Plumber"
+        },
+        "tag": "plumber"
+      },
+       {
+        "label": {
+          "fr": "Électricien",
+          "en": "Electrical"
+        },
+        "tag": "electrical"
+      },
+        {
+        "label": {
+          "fr": "Impression",
+          "en": "Print"
+        },
+        "tag": "print"
+      },
+        {
+        "label": {
+          "fr": "Photomaton",
+          "en": "Photo Booth"
+        },
+        "tag": "photo_booth"
+      },
+        {
+        "label": {
+          "fr": "Chargement de quai",
+          "en": "Loading Dock"
+        },
+        "tag": "loading_dock"
+      }
+    ],
+    "Administration": [
+      {
+        "label": {
+          "fr": "Bureau de poste désaffecté",
+          "en": "Disused Post Box"
+        },
+        "tag": "disused_post_box"
+      },
+      {
+        "label": {
+          "fr": "Borne électorale",
+          "en": "Polling Station"
+        },
+        "tag": "polling_station"
+      },
+       {
+        "label": {
+          "fr": "Bâtiment public",
+          "en": "Public Building"
+        },
+        "tag": "public_building"
+      },
+       {
+        "label": {
+          "fr": "Archives",
+          "en": "Archives"
+        },
+        "tag": "archives"
+      },
+        {
+        "label": {
+          "fr": "Poste de vérification de billet",
+          "en": "Ticket Validator"
+        },
+        "tag": "ticket_validator"
+      }
+    ],
+    "Commerce": [
+      {
+        "label": {
+          "fr": "Supermarché",
+          "en": "Supermarket"
+        },
+        "tag": "supermarket"
+      },
+      {
+        "label": {
+          "fr": "Magasin",
+          "en": "commercial"
+        },
+        "tag": "commercial"
+      },
+      {
+        "label": {
+          "fr": "Équipement commercial",
+          "en": "commercial_equipment"
+        },
+        "tag": "commercial_equipment"
+      },
+      {
+        "label": {
+          "fr": "Vente aux enchères",
+          "en": "auction"
+        },
+        "tag": "auction"
+      },
+      {
+        "label": {
+          "fr": "Machines de distribution",
+          "en": "vending_machines"
+        },
+        "tag": "vending_machines"
+      },
+      {
+        "label": {
+          "fr": "Appareils",
+          "en": "appliance"
+        },
+        "tag": "appliance"
+      },
+       {
+        "label": {
+          "fr": "Ordinateur",
+          "en": "printer"
+        },
+        "tag": "printer"
+      },
+      {
+        "label": {
+          "fr": "Équipement de restauration",
+          "en": "catering_equipment"
+        },
+        "tag": "catering_equipment"
+      },
+      {
+        "label": {
+          "fr": "Cuisine",
+          "en": "cooking_equipment"
+        },
+        "tag": "cooking_equipment"
+      },
+      {
+        "label": {
+          "fr": "Équipement de cuisine",
+          "en": "kitchen_equipment"
+        },
+        "tag": "kitchen_equipment"
+      },
+      {
+        "label": {
+          "fr": "Dépanneur",
+          "en": "Convenience"
+        },
+        "tag": "convenience"
+      },
+      {
+        "label": {
+          "fr": "Boulangerie",
+          "en": "Bakery"
+        },
+        "tag": "bakery"
+      },
+      {
+        "label": {
+          "fr": "Boucherie",
+          "en": "Butcher"
+        },
+        "tag": "butcher"
+      },
+      {
+        "label": {
+          "fr": "Marché",
+          "en": "Market"
+        },
+        "tag": "market"
+      },
+      {
+        "label": {
+          "fr": "Magasin de meubles",
+          "en": "Furniture"
+        },
+        "tag": "furniture"
+      },
+      {
+        "label": {
+          "fr": "Magasin de bricolage",
+          "en": "Doityourself"
+        },
+        "tag": "doityourself"
+      },
+      {
+        "label": {
+          "fr": "Magasin de journaux",
+          "en": "Newsagent"
+        },
+        "tag": "newsagent"
+      },
+      {
+        "label": {
+          "fr": "Magasin de vêtements",
+          "en": "Department Store"
+        },
+        "tag": "department_store"
+      },
+      {
+        "label": {
+          "fr": "Librairie",
+          "en": "Books"
+        },
+        "tag": "books"
+      },
+       {
+        "label": {
+          "fr": "Aliments surgelés",
+          "en": "Frozen Food"
+        },
+        "tag": "frozen_food"
+      },
+      {
+        "label": {
+          "fr": "Magasin de chaussures",
+          "en": "shoes"
+        },
+        "tag": "shoes"
+      },
+      {
+        "label": {
+          "fr": "Quincaillerie",
+          "en": "building_supplies"
+        },
+        "tag": "building_supplies"
+      },
+       {
+        "label": {
+          "fr": "Quincaillerie",
+          "en": "builders_merchant"
+        },
+        "tag": "builders_merchant"
+      },
+      {
+        "label": {
+          "fr": "Greengrocer",
+          "en": "greengrocer"
+        },
+        "tag": "greengrocer"
+      },
+      {
+        "label": {
+          "fr": "Magasin de meubles",
+          "en": "furnishing"
+        },
+        "tag": "furnishing"
+      },
+      {
+        "label": {
+          "fr": "Magasin de variété",
+          "en": "variety_store"
+        },
+        "tag": "variety_store"
+      },
+      {
+        "label": {
+          "fr": "Épicerie",
+          "en": "food"
+        },
+        "tag": "food"
+      },
+      {
+        "label": {
+          "fr": "Articles ménagers",
+          "en": "houseware"
+        },
+        "tag": "houseware"
+      },
+      {
+        "label": {
+          "fr": "Jouets",
+          "en": "toys"
+        },
+        "tag": "toys"
+      },
+      {
+        "label": {
+          "fr": "Électronique",
+          "en": "electronics"
+        },
+        "tag": "electronics"
+      },
+      {
+        "label": {
+          "fr": "Tissus",
+          "en": "fabric"
+        },
+        "tag": "fabric"
+      },
+      {
+        "label": {
+          "fr": "Bijouterie",
+          "en": "watches"
+        },
+        "tag": "watches"
+      },
+      {
+        "label": {
+          "fr": "Articles de cuisine",
+          "en": "curtain"
+        },
+        "tag": "curtain"
+      },
+       {
+        "label": {
+          "fr": "Bureaux",
+          "en": "bathroom"
+        },
+        "tag": "bathroom"
+      },
+        {
+        "label": {
+          "fr": "Tabac;e-cigarette",
+          "en": "tobacco;e-cigarette"
+        },
+        "tag": "tobacco;e-cigarette"
+      },
+      {
+        "label": {
+          "fr": "E-cigarette",
+          "en": "e-cigarette"
+        },
+        "tag": "e-cigarette"
+      }
+    ],
+    "Restauration": [
+      {
+        "label": {
+          "fr": "Restaurant",
+          "en": "Restaurant"
+        },
+        "tag": "restaurant"
+      },
+      {
+        "label": {
+          "fr": "Café",
+          "en": "Cafe"
+        },
+        "tag": "cafe"
+      },
+      {
+        "label": {
+          "fr": "Fast Food",
+          "en": "Fast Food"
+        },
+        "tag": "fast_food"
+      },
+      {
+        "label": {
+          "fr": "Pub",
+          "en": "Pub"
+        },
+        "tag": "pub"
+      },
+      {
+        "label": {
+          "fr": "Bar",
+          "en": "Bar"
+        },
+        "tag": "bar"
+      },
+      {
+        "label": {
+          "fr": "Ancien Pub",
+          "en": "Old Pub"
+        },
+        "tag": "old_pub"
+      },
+      {
+        "label": {
+          "fr": "Pub désaffecté",
+          "en": "Disused Pub"
+        },
+        "tag": "disused_pub"
+      },
+      {
+        "label": {
+          "fr": "Pub mort",
+          "en": "Dead Pub"
+        },
+        "tag": "dead_pub"
+      },
+      {
+        "label": {
+          "fr": "Stripclub",
+          "en": "Stripclub"
+        },
+        "tag": "stripclub"
+      }
+    ],
+    "Loisirs": [
+      {
+        "label": {
+          "fr": "Cinéma",
+          "en": "Cinema"
+        },
+        "tag": "cinema"
+      },
+      {
+        "label": {
+          "fr": "Théâtre",
+          "en": "Theatre"
+        },
+        "tag": "theatre"
+      },
+      {
+        "label": {
+          "fr": "Bibliothèque",
+          "en": "Library"
+        },
+        "tag": "library"
+      },
+      {
+        "label": {
+          "fr": "Centre sportif",
+          "en": "Sports Centre"
+        },
+        "tag": "sports_centre"
+      },
+      {
+        "label": {
+          "fr": "Terrain de jeu",
+          "en": "Playground"
+        },
+        "tag": "playground"
+      },
+      {
+        "label": {
+          "fr": "Lieu de culte",
+          "en": "Place of worship"
+        },
+        "tag": "place_of_worship"
+      },
+       {
+        "label": {
+          "fr": "Paris sportif",
+          "en": "Bookmaker"
+        },
+        "tag": "bookmaker"
+      },
+      {
+        "label": {
+          "fr": "Jardin",
+          "en": "Garden"
+        },
+        "tag": "garden"
+      },
+      {
+        "label": {
+          "fr": "Boîte de nuit",
+          "en": "nightclub"
+        },
+        "tag": "nightclub"
+      },
+      {
+        "label": {
+          "fr": "Jeux de hasard",
+          "en": "gambling"
+        },
+        "tag": "gambling"
+      },
+      {
+        "label": {
+          "fr": "École de danse",
+          "en": "dancing_school"
+        },
+        "tag": "dancing_school"
+      },
+      {
+        "label": {
+          "fr": "Sport",
+          "en": "sports"
+        },
+        "tag": "sports"
+      },
+      {
+        "label": {
+          "fr": "Art",
+          "en": "art"
+        },
+        "tag": "art"
+      },
+      {
+        "label": {
+          "fr": "Arcade",
+          "en": "Arcade"
+        },
+        "tag": "Arcade,_various_retailers"
+      },
+      {
+        "label": {
+          "fr": "Jeux",
+          "en": "games"
+        },
+        "tag": "games"
+      },
+      {
+        "label": {
+          "fr": "Karaoké",
+          "en": "karaoke_box"
+        },
+        "tag": "karaoke_box"
+      },
+      {
+        "label": {
+          "fr": "Golf miniature",
+          "en": "miniature_golf"
+        },
+        "tag": "miniature_golf"
+      },
+      {
+        "label": {
+          "fr": "Salle de sport",
+          "en": "sports_hall"
+        },
+        "tag": "sports_hall"
+      },
+      {
+        "label": {
+          "fr": "Divertissement",
+          "en": "entertainment"
+        },
+        "tag": "entertainment"
+      },
+      {
+        "label": {
+          "fr": "Glacier",
+          "en": "ice_rink"
+        },
+        "tag": "ice_rink"
+      },
+      {
+        "label": {
+          "fr": "Parc aquatique",
+          "en": "water_park"
+        },
+        "tag": "water_park"
+      },
+      {
+        "label": {
+          "fr": "Parc de trampolines",
+          "en": "trampoline_park"
+        },
+        "tag": "trampoline_park"
+      },
+      {
+        "label": {
+          "fr": "Salle de jeux",
+          "en": "indoor_gaming"
+        },
+        "tag": "indoor_gaming"
+      }
+    ],
+    "Transport": [
+      {
+        "label": {
+          "fr": "Parking",
+          "en": "Parking"
+        },
+        "tag": "parking"
+      },
+      {
+        "label": {
+          "fr": "Station de transfert des déchets",
+          "en": "waste_transfer_station"
+        },
+        "tag": "waste_transfer_station"
+      },
+      {
+        "label": {
+          "fr": "Inspection des véhicules",
+          "en": "vehicle_inspection"
+        },
+        "tag": "vehicle_inspection"
+      },
+      {
+        "label": {
+          "fr": "Station d'essence",
+          "en": "gas"
+        },
+        "tag": "gas"
+      },
+      {
+        "label": {
+          "fr": "Entrée de Parking",
+          "en": "Parking Entrance"
+        },
+        "tag": "parking_entrance"
+      },
+      {
+        "label": {
+          "fr": "Location de vélos",
+          "en": "Bicycle rental"
+        },
+        "tag": "bicycle_rental"
+      },
+      {
+        "label": {
+          "fr": "Stationnement de vélos",
+          "en": "Bicycle parking"
+        },
+        "tag": "bicycle_parking"
+      },
+      {
+        "label": {
+          "fr": "Stationnement de motos",
+          "en": "Motorcycle parking"
+        },
+        "tag": "motorcycle_parking"
+      },
+      {
+        "label": {
+          "fr": "Station-service",
+          "en": "Fuel"
+        },
+        "tag": "fuel"
+      },
+      {
+        "label": {
+          "fr": "Réparation de voitures",
+          "en": "Car repair"
+        },
+        "tag": "car_repair"
+      },
+      {
+        "label": {
+          "fr": "Borne de recharge",
+          "en": "Charging station"
+        },
+        "tag": "charging_station"
+      },
+      {
+        "label": {
+          "fr": "Terminal de ferry",
+          "en": "Ferry Terminal"
+        },
+        "tag": "ferry_terminal"
+      },
+      {
+        "label": {
+          "fr": "Location de bateaux",
+          "en": "Boat rental"
+        },
+        "tag": "boat_rental"
+      },
+      {
+        "label": {
+          "fr": "Moto",
+          "en": "motorcycle"
+        },
+        "tag": "motorcycle"
+      },
+       {
+        "label": {
+          "fr": "Point de taxi",
+          "en": "taxi_point"
+        },
+        "tag": "taxi_point"
+      },
+      {
+        "label": {
+          "fr": "Taxi",
+          "en": "taxi"
+        },
+        "tag": "taxi"
+      },
+      {
+        "label": {
+          "fr": "Location de voitures",
+          "en": "car rental"
+        },
+        "tag": "car_rental"
+      },
+       {
+        "label": {
+          "fr": "Lavage de voitures",
+          "en": "car wash"
+        },
+        "tag": "car_wash"
+      },
+       {
+        "label": {
+          "fr": "Caméra de circulation",
+          "en": "traffic camera"
+        },
+        "tag": "traffic_camera"
+      },
+      {
+        "label": {
+          "fr": "Espace parking",
+          "en": "Parking Space"
+        },
+        "tag": "parking_space"
+      },
+       {
+        "label": {
+          "fr": "Station de recharge",
+          "en": "Charging Station"
+        },
+        "tag": "charging_station"
+      },
+       {
+        "label": {
+          "fr": "Glissière",
+          "en": "Slipway"
+        },
+        "tag": "slipway"
+      },
+       {
+        "label": {
+          "fr": "Poste et parking à vélos",
+          "en": "Post Box;bicycle_parking"
+        },
+        "tag": "post_box;bicycle_parking"
+      },
+      {
+        "label": {
+          "fr": "Minicab",
+          "en": "Minicab"
+        },
+        "tag": "minicab"
+      },
+      {
+        "label": {
+          "fr": "Voitures de location privée",
+          "en": "Private Hire Cars"
+        },
+        "tag": "private_hire_cars"
+      },
+      {
+        "label": {
+          "fr": "Station de réparation de vélos",
+          "en": "Bicycle Repair Station"
+        },
+        "tag": "bicycle_repair_station"
+      },
+      {
+        "label": {
+          "fr": "Station de réparation de vélos",
+          "en": "Bicycle Repair Station"
+        },
+        "tag": "bicycle_repair_station"
+      }
+    ],
+    "Services Publics": [
+      {
+        "label": {
+          "fr": "Bureau de poste",
+          "en": "Post office"
+        },
+        "tag": "post_office"
+      },
+      {
+        "label": {
+          "fr": "Banque",
+          "en": "Bank"
+        },
+        "tag": "bank"
+      },
+       {
+        "label": {
+          "fr": "Caisse",
+          "en": "ATM"
+        },
+        "tag": "atm"
+      },
+      {
+        "label": {
+          "fr": "Livre en libre-service",
+          "en": "Public bookcase"
+        },
+        "tag": "public_bookcase"
+      },
+      {
+        "label": {
+          "fr": "Déchetterie",
+          "en": "Waste disposal"
+        },
+        "tag": "waste_disposal"
+      },
+      {
+        "label": {
+          "fr": "Espace de coworking",
+          "en": "Coworking Space"
+        },
+        "tag": "coworking_space"
+      },
+      {
+        "label": {
+          "fr": "Union étudiante",
+          "en": "Student Union"
+        },
+        "tag": "student_union"
+      },
+      {
+        "label": {
+          "fr": "Samuel Court",
+          "en": "Samuel Court"
+        },
+        "tag": "Samuel Court"
+      },
+      {
+        "label": {
+          "fr": "Jardin de chiens",
+          "en": "Dog Park"
+        },
+        "tag": "dog_park"
+      },
+      {
+        "label": {
+            "fr": "Tribunal",
+            "en": "courthouse"
+        },
+        "tag": "courthouse"
+    },
+    {
+        "label": {
+            "fr": "Caserne de pompiers",
+            "en": "fire_station"
+        },
+        "tag": "fire_station"
+    },
+     {
+        "label": {
+            "fr": "Bureau de poste",
+            "en": "dead_post_office"
+        },
+        "tag": "dead_post_office"
+    },
+    {
+        "label": {
+            "fr": "Abri",
+            "en": "shelter"
+        },
+        "tag": "shelter"
+    },
+    {
+        "label": {
+            "fr": "Site de toilettes temporaires",
+            "en": "temporary_toilet_site"
+        },
+        "tag": "temporary_toilet_site"
+    }
+    ],
+    "Services à domicile": [
+      {
+        "label": {
+          "fr": "Couverture",
+          "en": "carpet"
+        },
+        "tag": "carpet"
+      },
+      {
+        "label": {
+          "fr": "Menuiserie",
+          "en": "joinery"
+        },
+        "tag": "joinery"
+      },
+      {
+        "label": {
+          "fr": "Plomberie",
+          "en": "bathroom"
+        },
+        "tag": "bathroom"
+      },
+      {
+        "label": {
+          "fr": "Revêtements de sol",
+          "en": "tiles"
+        },
+        "tag": "tiles"
+      },
+      {
+        "label": {
+          "fr": "Cordonnier",
+          "en": "cobbler"
+        },
+        "tag": "cobbler"
+      },
+      {
+        "label": {
+          "fr": "Ferronnerie",
+          "en": "iron_monger"
+        },
+        "tag": "iron_monger"
+      },
+       {
+        "label": {
+          "fr": "Grit_bin",
+          "en": "grit_bin"
+        },
+        "tag": "grit_bin"
+      }
+    ],
+     "Désaffecté": [
+      {
+        "label": {
+          "fr": "Désaffecté",
+          "en": "Disused"
+        },
+        "tag": "disused"
+      }
+    ],
+    "Station": [
+      {
+        "label": {
+          "fr": "Consigne à bagages",
+          "en": "Left Luggage"
+        },
+        "tag": "left_luggage"
+      },
+      {
+        "label": {
+          "fr": "Point de contrôle",
+          "en": "Check-in"
+        },
+        "tag": "check_in"
+      },
+      {
+        "label": {
+          "fr": "Toilette publique",
+          "en": "Sanitary Dump Station"
+        },
+        "tag": "sanitary_dump_station"
+      },
+      {
+        "label": {
+          "fr": "Parking à poussette",
+          "en": "Buggy Parking"
+        },
+        "tag": "buggy_parking"
+      },
+      {
+        "label": {
+          "fr": "Borne de retrait",
+          "en": "Parcel Locker"
+        },
+        "tag": "parcel_locker"
+      },
+      {
+        "label": {
+          "fr": "Salle d'attente",
+          "en": "Waiting Room"
+        },
+        "tag": "waiting_room"
+      }
+    ],
+    "Achats": [
+      {
+        "label": {
+          "fr": "Fournitures de restaurant",
+          "en": "Restaurant Supplies"
+        },
+        "tag": "restaurant_supplies"
+      },
+      {
+        "label": {
+          "fr": "Fournitures médicales",
+          "en": "Medical Supply"
+        },
+        "tag": "medical_supply"
+      },
+       {
+        "label": {
+          "fr": "Fournitures pour bébé",
+          "en": "Baby Goods"
+        },
+        "tag": "baby_goods"
+      },
+      {
+        "label": {
+          "fr": "Stylos",
+          "en": "Pens"
+        },
+        "tag": "pens"
+      },
+      {
+        "label": {
+          "fr": "Meubles",
+          "en": "Furnishings"
+        },
+        "tag": "furnishings"
+      },
+      {
+        "label": {
+          "fr": "Vêtements personnalisés",
+          "en": "Customizing Cap Shop"
+        },
+        "tag": "customizing_cap_shop"
+      },
+      {
+        "label": {
+          "fr": "Machine à coudre",
+          "en": "Sewing Machines"
+        },
+        "tag": "sewing_machines"
+      },
+        {
+          "label": {
+            "fr": "Kiosque",
+            "en": "kiosk"
+          },
+          "tag": "kiosk"
+        },
+        {
+          "label": {
+            "fr": "Cadeau",
+            "en": "gift"
+          },
+          "tag": "gift"
+        },
+        {
+          "label": {
+            "fr": "Accessoires de mode",
+            "en": "fashion_accessories"
+          },
+          "tag": "fashion_accessories"
+        },
+         {
+          "label": {
+            "fr": "Bijouterie",
+            "en": "jewelry"
+          },
+          "tag": "jewelry"
+        },
+         {
+          "label": {
+            "fr": "Cosmétiques",
+            "en": "cosmetics"
+          },
+          "tag": "cosmetics"
+        },
+        {
+          "label": {
+            "fr": "Parfumerie",
+            "en": "perfumery"
+          },
+          "tag": "perfumery"
+        },
+        {
+          "label": {
+            "fr": "Appareil photo",
+            "en": "camera"
+          },
+          "tag": "camera"
+        }
+      ],
+      "Divers": [
+        {
+          "label": {
+            "fr": "Blinds",
+            "en": "Blinds"
+          },
+          "tag": "blinds"
+        },
+        {
+          "label": {
+            "fr": "Salle d'arcade",
+            "en": "Arcade,_various_retailers"
+          },
+          "tag": "Arcade,_various_retailers"
+        },
+        {
+          "label": {
+            "fr": "Bay de trolley",
+            "en": "trolley_bay"
+          },
+          "tag": "trolley_bay"
+        },
+        {
+          "label": {
+            "fr": "Salle de réception",
+            "en": "reception_desk"
+          },
+          "tag": "reception_desk"
+        },
+        {
+          "label": {
+            "fr": "Table",
+            "en": "table"
+          },
+          "tag": "table"
+        },
+        {
+          "label": {
+            "fr": "Banc",
+            "en": "bleachers"
+          },
+          "tag": "bleachers"
+        },
+        {
+          "label": {
+            "fr": "Espace fumeur",
+            "en": "smoking_area"
+          },
+          "tag": "smoking_area"
+        },
+        {
+          "label": {
+            "fr": "Espace de jeu intérieur",
+            "en": "indoor_play"
+          },
+          "tag": "indoor_play"
+        },
+        {
+          "label": {
+            "fr": "Animé",
+            "en": "anime"
+          },
+          "tag": "anime"
+        },
+        {
+          "label": {
+            "fr": "Salle d'habillage",
+            "en": "dressing_room"
+          },
+          "tag": "dressing_room"
+        },
+         {
+          "label": {
+            "fr": "Zone piétonne",
+            "en": "lost_property"
+          },
+          "tag": "lost_property"
+        },
+        {
+          "label": {
+            "fr": "Bin de journaux",
+            "en": "newspaper_distribution_bin"
+          },
+          "tag": "newspaper_distribution_bin"
+        },
+        {
+          "label": {
+            "fr": "Centre d'information",
+            "en": "information_centre"
+          },
+          "tag": "information_centre"
+        },
+        {
+          "label": {
+            "fr": "Abri d'oiseaux",
+            "en": "bird_hide"
+          },
+          "tag": "bird_hide"
+        },
+        {
+          "label": {
+            "fr": "Bar à jus",
+            "en": "juice_bar"
+          },
+          "tag": "juice_bar"
+        },
+        {
+          "label": {
+            "fr": "Hôtel de ville",
+            "en": "townhall"
+          },
+          "tag": "townhall"
+        },
+        {
+          "label": {
+            "fr": "Bois",
+            "en": "wood"
+          },
+          "tag": "wood"
+        },
+         {
+          "label": {
+            "fr": "Foyer",
+            "en": "firepit"
+          },
+          "tag": "firepit"
+        },
+        {
+          "label": {
+            "fr": "Banque",
+            "en": "bank"
+          },
+          "tag": "bank"
+        },
+        {
+          "label": {
+            "fr": "Centre d'intérêts",
+            "en": "Lebara Games Land"
+          },
+          "tag": "Lebara Games Land"
+        },
+        {
+          "label": {
+            "fr": "Canteen",
+            "en": "canteen"
+          },
+          "tag": "canteen"
+        },
+        {
+          "label": {
+            "fr": "Bureau d'accueil",
+            "en": "reception_desk"
+          },
+          "tag": "reception_desk"
+        },
+        {
+          "label": {
+            "fr": "Bar à jus",
+            "en": "juice_bar"
+          },
+          "tag": "juice_bar"
+        },
+        {
+          "label": {
+            "fr": "Abri d'oiseaux",
+            "en": "bird_hide"
+          },
+          "tag": "bird_hide"
+        },
+         {
+          "label": {
+            "fr": "Magie",
+            "en": "magic"
+          },
+          "tag": "magic"
+        },
+        {
+          "label": {
+            "fr": "Psychique",
+            "en": "psychic"
+          },
+          "tag": "psychic"
+        },
+        {
+          "label": {
+            "fr": "Armes",
+            "en": "weapons"
+          },
+          "tag": "weapons"
+        },
+        {
+          "label": {
+            "fr": "Zone fumeur",
+            "en": "smoking_area"
+          },
+          "tag": "smoking_area"
+        },
+        {
+          "label": {
+            "fr": "Notice board",
+            "en": "notice_board"
+          },
+          "tag": "notice_board"
+        },
+         {
+          "label": {
+            "fr": "Plate-forme de pesée",
+            "en": "weighbridge"
+          },
+          "tag": "weighbridge"
+        },
+         {
+          "label": {
+            "fr": "Zone de pique-nique",
+            "en": "outdoor_seating"
+          },
+          "tag": "outdoor_seating"
+        },
+        {
+          "label": {
+            "fr": "Magasin de ballons",
+            "en": "balloon"
+          },
+          "tag": "balloon"
+        },
+        {
+          "label": {
+            "fr": "Verre",
+            "en": "Glazing"
+          },
+          "tag": "glazing"
+        },
+        {
+          "label": {
+            "fr": "Cabinet",
+            "en": "Cabinet"
+          },
+          "tag": "cabinet"
+        },
+        {
+          "label": {
+            "fr": "Papier peint",
+            "en": "Wallpapers"
+          },
+          "tag": "wallpapers"
+        },
+        {
+          "label": {
+            "fr": "Articles de luxe",
+            "en": "Luxury"
+          },
+          "tag": "luxury"
+        },
+        {
+          "label": {
+            "fr": "Pneus",
+            "en": "Tyres"
+          },
+          "tag": "tyres"
+        },
+        {
+          "label": {
+            "fr": "Vin",
+            "en": "Wine_Storage_and Accessories"
+          },
+          "tag": "Wine_Storage_and Accessories"
+        },
+        {
+          "label": {
+            "fr": "Articles d'art",
+            "en": "Art_Gallery"
+          },
+          "tag": "art_gallery"
+        },
+        {
+          "label": {
+            "fr": "Eau potable",
+            "en": "drinking_water"
+          },
+          "tag": "drinking_water"
+        },
+        {
+          "label": {
+            "fr": "Fontaine",
+            "en": "fountain"
+          },
+          "tag": "fountain"
+        },
+         {
+          "label": {
+            "fr": "Banc",
+            "en": "bench"
+          },
+          "tag": "bench"
+        },
+          {
+          "label": {
+            "fr": "Extérieur",
+            "en": "outdoor"
+          },
+          "tag": "outdoor"
+        },
+        {
+          "label": {
+            "fr": "Oui",
+            "en": "yes"
+          },
+          "tag": "yes"
+        },
+          {
+          "label": {
+            "fr": "Vide",
+            "en": "vacant"
+          },
+          "tag": "vacant"
+        },
+          {
+          "label": {
+            "fr": "Cuisine",
+            "en": "kitchen"
+          },
+          "tag": "kitchen"
+        },
+         {
+          "label": {
+            "fr": "Installation sociale",
+            "en": "social_facility"
+          },
+          "tag": "social_facility"
+        },
+         {
+          "label": {
+            "fr": "Salle de livrée",
+            "en": "livery_hall"
+          },
+          "tag": "livery_hall"
+        },
+         {
+          "label": {
+            "fr": "Point d'eau",
+            "en": "water_point"
+          },
+          "tag": "water_point"
+        },
+         {
+          "label": {
+            "fr": "Horloge",
+            "en": "clock"
+          },
+          "tag": "clock"
+        },
+        {
+          "label": {
+            "fr": "Centre de remise en forme",
+            "en": "fitness_centre"
+          },
+          "tag": "fitness_centre"
+        }
+      ],
+      "Nourriture": [
+        {
+            "label": {
+                "fr": "Pâtisserie",
+                "en": "Pastry"
+            },
+            "tag": "pastry"
+        }
+    ],
+      "Finances": [
+      {
+        "label": {
+          "fr": "Prêteur sur gages",
+          "en": "pawnbroker"
+        },
+        "tag": "pawnbroker"
+      },
+      {
+        "label": {
+          "fr": "Prêteur sur gages",
+          "en": "money_lender"
+        },
+        "tag": "money_lender"
+      },
+      {
+        "label": {
+          "fr": "Terminal de paiement",
+          "en": "payment_terminal"
+        },
+        "tag": "payment_terminal"
+      },
+      {
+        "label": {
+          "fr": "Crédit",
+          "en": "credit"
+        },
+        "tag": "credit"
+      },
+      {
+        "label": {
+          "fr": "Loterie",
+          "en": "lottery"
+        },
+        "tag": "lottery"
+      },
+      {
+        "label": {
+          "fr": "Machine à cartes",
+          "en": "Card_Machines_&_Accessories"
+        },
+        "tag": "Card_Machines_&_Accessories"
+      },
+      {
+        "label": {
+          "fr": "Casino",
+          "en": "Casino"
+        },
+        "tag": "casino"
+      },
+      {
+        "label": {
+          "fr": "Transfert d'argent",
+          "en": "money_transfer"
+        },
+        "tag": "money_transfer"
+      },
+      {
+        "label": {
+          "fr": "Usurier",
+          "en": "loan_shark"
+        },
+        "tag": "loan_shark"
+      },
+      {
+        "label": {
+            "fr": "Services financiers",
+            "en": "Financial"
+        },
+        "tag": "financial"
+      } 
+    ],
+    "Logement": [
+      {
+        "label": {
+          "fr": "Conversion de combles",
+          "en": "Loft Conversions"
+        },
+        "tag": "loft_conversions"
+      },
+      {
+        "label": {
+          "fr": "Brothel",
+          "en": "brothel"
+        },
+        "tag": "brothel"
+      },
+      {
+        "label": {
+          "fr": "Ferme",
+          "en": "farm"
+        },
+        "tag": "farm"
+      },
+      {
+        "label": {
+          "fr": "Hôtel",
+          "en": "lounge"
+        },
+        "tag": "lounge"
+      },
+      {
+        "label": {
+          "fr": "Hébergement",
+          "en": "animal_boarding"
+        },
+        "tag": "animal_boarding"
+      },
+      {
+        "label": {
+          "fr": "Marina",
+          "en": "marina"
+        },
+        "tag": "marina"
+      },
+      {
+        "label": {
+          "fr": "Hébergement étudiant",
+          "en": "Student Accommodation"
+        },
+        "tag": "student_accommodation"
+      },
+      {
+        "label": {
+            "fr": "Entrepôt de stockage",
+            "en": "Storage Rental"
+          },
+          "tag": "storage_rental"
+        }
+    ],
+    "Services aux entreprises": [
+      {
+        "label": {
+          "fr": "Agence d'emploi",
+          "en": "employment_agency"
+        },
+        "tag": "employment_agency"
+      },
+      {
+        "label": {
+          "fr": "Entreprise",
+          "en": "business"
+        },
+        "tag": "business"
+      },
+        {
+        "label": {
+          "fr": "Copyshop",
+          "en": "copyshop"
+        },
+        "tag": "copyshop"
+      }
+    ],
+    "Ordinateurs et technologie": [
+        {
+          "label": {
+            "fr": "Ordinateur",
+            "en": "computer"
+          },
+          "tag": "computer"
+        },
+        {
+          "label": {
+            "fr": "Réparation d'ordinateurs",
+            "en": "computer_repair"
+          },
+          "tag": "computer_repair"
+        },
+        {
+          "label": {
+            "fr": "Hifi",
+            "en": "hifi"
+          },
+          "tag": "hifi"
+        },
+        {
+          "label": {
+            "fr": "Vidéo",
+            "en": "video"
+          },
+          "tag": "video"
+        },
+        {
+          "label": {
+            "fr": "Audio vidéo",
+            "en": "audio_video"
+          },
+          "tag": "audio_video"
+        },
+        {
+          "label": {
+            "fr": "Internet café",
+            "en": "internet_cafe"
+          },
+          "tag": "internet_cafe"
+        }
+      ]
+  },
+  "Soins personnels": {
+    "Bien-être": [
+      {
+        "label": {
+          "fr": "Médecine chinoise",
+          "en": "chinese_medicine"
+        },
+        "tag": "chinese_medicine"
+      },
+      {
+        "label": {
+            "fr": "Fitness",
+            "en": "Fitness"
+        },
+        "tag": "fitness"
+    }
+    ],
+      "Services": [
+        {
+          "label": {
+            "fr": "Impression",
+            "en": "Printers"
+          },
+          "tag": "printers"
+        },
+        {
+          "label": {
+            "fr": "Location d'outils",
+            "en": "Tool Hire"
+          },
+          "tag": "tool_hire"
+        },
+        {
+          "label": {
+            "fr": "Timbres",
+            "en": "Stamps"
+          },
+          "tag": "stamps"
+        },
+        {
+          "label": {
+            "fr": "Lieux d'enterrement",
+            "en": "Grave Yard"
+          },
+          "tag": "grave_yard"
+        },
+        {
+          "label": {
+            "fr": "Mariage",
+            "en": "Wedding"
+          },
+          "tag": "wedding"
+        },
+        {
+          "label": {
+            "fr": "Construction",
+            "en": "Construction"
+          },
+          "tag": "construction"
+        },
+        {
+          "label": {
+            "fr": "Location de matériel de construction",
+            "en": "Construction"
+          },
+          "tag": "construction"
+        },
+        {
+          "label": {
+            "fr": "Billetterie",
+            "en": "Ticket Booth"
+          },
+          "tag": "ticket_booth"
+        },
+        {
+          "label": {
+            "fr": "Morgue",
+            "en": "Mortuary"
+          },
+          "tag": "mortuary"
+        },
+        {
+          "label": {
+            "fr": "Commerce",
+            "en": "Trade"
+          },
+          "tag": "trade"
+        },
+        {
+          "label": {
+            "fr": "Nettoyage de chaussures",
+            "en": "Shoe Shine"
+          },
+          "tag": "shoe_shine"
+        },
+            {
+                "label": {
+                    "fr": "Soins pour enfants",
+                    "en": "childcare"
+                },
+                "tag": "childcare"
+            }
+        ],
+        "Autres": [
+      {
+        "label": {
+          "fr": "Transsexuel",
+          "en": "Transsexual"
+        },
+        "tag": "transsexual"
+      }
+    ]
+  },
+  "Intérêts spéciaux": {
+        "Divers": [
+            {
+                "label": {
+                    "fr": "Érotique",
+                    "en": "erotic"
+                },
+                "tag": "erotic"
+            }
+        ]
+    },
+  "Communications": {
+        "Communication": [
+      {
+        "label": {
+          "fr": "Communication",
+          "en": "communications"
+        },
+        "tag": "communications"
+      }
+    ]
+  },
+  "Culture et Loisirs": {
+    "Arts": [
+      {
+        "label": {
+          "fr": "Centre d'art",
+          "en": "arts_centre"
+        },
+        "tag": "arts_centre"
+      },
+      {
+        "label": {
+          "fr": "Galerie d'art",
+          "en": "Art Gallery"
+        },
+        "tag": "art_gallery"
+      },
+      {
+        "label": {
+          "fr": "Boutique de modélisme",
+          "en": "Model"
+        },
+        "tag": "model"
+      },
+      {
+        "label": {
+          "fr": "Boutique de comics",
+          "en": "Comics"
+        },
+        "tag": "comics"
+      },
+      {
+        "label": {
+          "fr": "Tattoo",
+          "en": "tattoo"
+        },
+        "tag": "tattoo"
+      },
+        {
+        "label": {
+          "fr": "Fabricant de concertina",
+          "en": "concertina_maker"
+        },
+        "tag": "concertina_maker"
+      },
+      {
+        "label": {
+          "fr": "Enseigne",
+          "en": "signs"
+        },
+        "tag": "signs"
+      },
+      {
+        "label": {
+          "fr": "Cadre",
+          "en": "frame"
+        },
+        "tag": "frame"
+      },
+      {
+        "label": {
+          "fr": "Ornement",
+          "en": "ornament"
+        },
+        "tag": "ornament"
+      },
+      {
+        "label": {
+          "fr": "Taxidermiste",
+          "en": "taxidermist"
+        },
+        "tag": "taxidermist"
+      },
+      {
+        "label": {
+          "fr": "Couture",
+          "en": "sewing"
+        },
+        "tag": "sewing"
+      },
+      {
+        "label": {
+          "fr": "Catalogue",
+          "en": "catalogue"
+        },
+        "tag": "catalogue"
+      }
+    ],
+    "Culture": [
+      {
+        "label": {
+          "fr": "Monastère",
+          "en": "monastery"
+        },
+        "tag": "monastery"
+      },
+      {
+        "label": {
+          "fr": "Lieu de recherche",
+          "en": "research_institute"
+        },
+        "tag": "research_institute"
+      },
+       {
+        "label": {
+          "fr": "Centre de recherche",
+          "en": "research_institute"
+        },
+        "tag": "research_institute"
+      },
+      {
+        "label": {
+          "fr": "Salle de concert",
+          "en": "concert_hall"
+        },
+        "tag": "concert_hall"
+      },
+      {
+        "label": {
+          "fr": "Crematorium",
+          "en": "crematorium"
+        },
+        "tag": "crematorium"
+      }
+    ],
+    "Divertissement": [
+      {
+        "label": {
+          "fr": "Musique",
+          "en": "music"
+        },
+        "tag": "music"
+      },
+       {
+        "label": {
+          "fr": "Salle de concert",
+          "en": "music_venue"
+        },
+        "tag": "music_venue"
+      },
+      {
+        "label": {
+          "fr": "Danse",
+          "en": "dance"
+        },
+        "tag": "dance"
+      },
+      {
+        "label": {
+          "fr": "Evénements",
+          "en": "events_venue"
+        },
+        "tag": "events_venue"
+      },
+        {
+        "label": {
+          "fr": "Cloche",
+          "en": "bells"
+        },
+        "tag": "bells"
+      },
+      {
+        "label": {
+          "fr": "Instrument de musique",
+          "en": "musical_instrument"
+        },
+        "tag": "musical_instrument"
+      },
+      {
+        "label": {
+          "fr": "Piscine",
+          "en": "Swimming_pool"
+        },
+        "tag": "swimming_pool"
+      },
+      {
+        "label": {
+          "fr": "Amusements",
+          "en": "Amusements"
+        },
+        "tag": "amusements"
+      },
+      {
+        "label": {
+          "fr": "Centre de jeux pour adultes",
+          "en": "Adult Gaming Centre"
+        },
+        "tag": "adult_gaming_centre"
+      },
+      {
+        "label": {
+          "fr": "Dojo",
+          "en": "Dojo"
+        },
+        "tag": "dojo"
+      },
+      {
+        "label": {
+          "fr": "Comédie",
+          "en": "Comedy"
+        },
+        "tag": "comedy"
+      },
+      {
+        "label": {
+          "fr": "Golf",
+          "en": "Golf"
+        },
+        "tag": "golf"
+      },
+      {
+        "label": {
+          "fr": "Jardin",
+          "en": "Park"
+        },
+        "tag": "park"
+      },
+      {
+        "label": {
+          "fr": "Pêche",
+          "en": "Fishing"
+        },
+        "tag": "fishing"
+      },
+      {
+          "label": {
+            "fr": "Billard",
+            "en": "Amusement Arcade"
+          },
+          "tag": "amusement_arcade"
+        }
+    ],
+    "Alimentation et boisson": [
+      {
+        "label": {
+          "fr": "Traiteur",
+          "en": "catering"
+        },
+        "tag": "catering"
+      },
+      {
+        "label": {
+          "fr": "Poissonnerie",
+          "en": "fishmonger"
+        },
+        "tag": "fishmonger"
+      },
+      {
+        "label": {
+          "fr": "Bar à jus",
+          "en": "juice_bar"
+        },
+        "tag": "juice_bar"
+      },
+      {
+        "label": {
+          "fr": "Épicerie fine",
+          "en": "caviar"
+        },
+        "tag": "caviar"
+      },
+      {
+        "label": {
+          "fr": "Crèmerie",
+          "en": "dairy"
+        },
+        "tag": "dairy"
+      },
+      {
+        "label": {
+          "fr": "Primeur",
+          "en": "greengrocer"
+        },
+        "tag": "greengrocer;convenience"
+      },
+      {
+        "label": {
+          "fr": "Restauration rapide",
+          "en": "food_court"
+        },
+        "tag": "food_court"
+      },
+      {
+        "label": {
+          "fr": "Restauration rapide",
+          "en": "food"
+        },
+        "tag": "food"
+      },
+       {
+        "label": {
+          "fr": "Seafood",
+          "en": "seafood"
+        },
+        "tag": "seafood"
+      }
+    ],
+    "Sports et loisirs": [
+      {
+        "label": {
+          "fr": "Gymnase",
+          "en": "gymnasium"
+        },
+        "tag": "gymnasium"
+      },
+      {
+        "label": {
+          "fr": "Massage",
+          "en": "massage"
+        },
+        "tag": "massage"
+      },
+      {
+        "label": {
+          "fr": "Salon de massage",
+          "en": "massage_parlour"
+        },
+        "tag": "massage_parlour"
+      },
+      {
+        "label": {
+          "fr": "Club privé",
+          "en": "private_club"
+        },
+        "tag": "private_club"
+      }
+    ],
+    "Vie Nocturne": [
+      {
+        "label": {
+          "fr": "Hookah Lounge",
+          "en": "Hookah Lounge"
+        },
+        "tag": "hookah_lounge"
+      },
+      {
+        "label": {
+          "fr": "Boîte échangiste",
+          "en": "Swingerclub"
+        },
+        "tag": "swingerclub"
+      }
+    ],
+     "Autres": [
+      {
+        "label": {
+          "fr": "Billetterie",
+          "en": "ticket"
+        },
+        "tag": "ticket"
+      },
+      {
+        "label": {
+          "fr": "Non",
+          "en": "no"
+        },
+        "tag": "no"
+      },
+      {
+        "label": {
+          "fr": "Casinos",
+          "en": "Escape Game"
+        },
+        "tag": "escape_game"
+      },
+      {
+        "label": {
+          "fr": "Hackerspace",
+          "en": "Hackerspace"
+        },
+        "tag": "hackerspace"
+      },
+      {
+        "label": {
+          "fr": "Pole",
+          "en": "Pole"
+        },
+        "tag": "pole"
+      },
+      {
+        "label": {
+          "fr": "Centre de bien-être",
+          "en": "Wellness"
+        },
+        "tag": "wellness"
+      }
+    ]
+  },
+  "Maison et jardin": {
+    "Aménagement intérieur": [
+      {
+        "label": {
+          "fr": "Conception",
+          "en": "design"
+        },
+        "tag": "design"
+      },
+      {
+        "label": {
+          "fr": "Architectes",
+          "en": "architects"
+        },
+        "tag": "architects"
+      },
+      {
+        "label": {
+          "fr": "Éclairage",
+          "en": "lighting"
+        },
+        "tag": "lighting"
+      },
+      {
+        "label": {
+          "fr": "Verrerie",
+          "en": "glaziery"
+        },
+        "tag": "glaziery"
+      },
+      {
+        "label": {
+          "fr": "Fournitures de maison",
+          "en": "household"
+        },
+        "tag": "household"
+      },
+      {
+        "label": {
+          "fr": "Hotel",
+          "en": "bed"
+        },
+        "tag": "bed"
+      },
+        {
+        "label": {
+          "fr": "Tuiles",
+          "en": "tiles"
+        },
+        "tag": "tiles"
+      }
+    ],
+    "Autres": [
+      {
+        "label": {
+          "fr": "Nursery",
+          "en": "nursery"
+        },
+        "tag": "nursery"
+      }
+    ]
+  },
+  "Achats": {
+    "Généralistes": [
+      {
+        "label": {
+          "fr": "Général",
+          "en": "General"
+        },
+        "tag": "general"
+      },
+       {
+        "label": {
+          "fr": "Centre commercial",
+          "en": "Mall"
+        },
+        "tag": "mall"
+      },
+      {
+        "label": {
+          "fr": "Marché",
+          "en": "Marketplace"
+        },
+        "tag": "marketplace"
+      },
+       {
+        "label": {
+          "fr": "Magasin d'occasion",
+          "en": "Second Hand"
+        },
+        "tag": "second_hand"
+      },
+       {
+        "label": {
+          "fr": "Boutique d'aubaines",
+          "en": "Thrift Store"
+        },
+        "tag": "thrift_store"
+      },
+       {
+        "label": {
+          "fr": "Vente en gros",
+          "en": "Wholesale"
+        },
+        "tag": "wholesale"
+      },
+       {
+        "label": {
+          "fr": "Magasin de détail sans plastique",
+          "en": "Plastic-free refill shop"
+        },
+        "tag": "plastic-free refill shop"
+      },
+      {
+        "label": {
+          "fr": "Vente en gros",
+          "en": "Wholesale"
+        },
+        "tag": "wholesale"
+      }
+    ],
+    "Shopping": [
+      {
+        "label": {
+          "fr": "Magasin de cadeaux",
+          "en": "memorabilia"
+        },
+        "tag": "memorabilia"
+      },
+      {
+        "label": {
+          "fr": "Magasin de céramique",
+          "en": "ceramic_tiles"
+        },
+        "tag": "ceramic_tiles"
+      },
+      {
+        "label": {
+          "fr": "Articles ménagers",
+          "en": "homewares"
+        },
+        "tag": "homewares"
+      },
+      {
+        "label": {
+          "fr": "Peinture",
+          "en": "paint"
+        },
+        "tag": "paint"
+      },
+      {
+        "label": {
+          "fr": "Magasin de vêtements",
+          "en": "textiles"
+        },
+        "tag": "textiles"
+      },
+      {
+        "label": {
+          "fr": "Cadeaux et bijoux",
+          "en": "jewelry;tatoo"
+        },
+        "tag": "jewelry;tatoo"
+      },
+      {
+        "label": {
+          "fr": "Livres",
+          "en": "books"
+        },
+        "tag": "books"
+      },
+      {
+        "label": {
+          "fr": "3D_Shop",
+          "en": "3d_shop"
+        },
+        "tag": "3d_shop"
+      },
+      {
+        "label": {
+          "fr": "Mercerie",
+          "en": "haberdashery"
+        },
+        "tag": "haberdashery"
+      },
+      {
+        "label": {
+          "fr": "Magasin de jardinage",
+          "en": "garden_centre"
+        },
+        "tag": "garden_centre;florist"
+      },
+      {
+        "label": {
+          "fr": "Magasin de cadeaux",
+          "en": "craft"
+        },
+        "tag": "craft"
+      },
+      {
+        "label": {
+          "fr": "Magasin de literie",
+          "en": "linen"
+        },
+        "tag": "linen"
+      },
+      {
+        "label": {
+          "fr": "Magasin d'artisanat",
+          "en": "pottery"
+        },
+        "tag": "pottery"
+      },
+      {
+        "label": {
+          "fr": "Vêtements",
+          "en": "discount"
+        },
+        "tag": "discount"
+      },
+      {
+        "label": {
+          "fr": "Magasin de cuisine",
+          "en": "kitchenware"
+        },
+        "tag": "kitchenware"
+      },
+      {
+        "label": {
+          "fr": "Magasin de meubles",
+          "en": "homewares"
+        },
+        "tag": "homewares"
+      },
+      {
+        "label": {
+          "fr": "Magasin de cadeaux",
+          "en": "travel_goods"
+        },
+        "tag": "travel_goods"
+      },
+      {
+        "label": {
+          "fr": "Magasin de cristaux",
+          "en": "crystal"
+        },
+        "tag": "crystal"
+      },
+       {
+        "label": {
+          "fr": "Magasin de linge de maison",
+          "en": "household_linen"
+        },
+        "tag": "household_linen"
+      },
+      {
+        "label": {
+          "fr": "Magasin de perruques",
+          "en": "wigs"
+        },
+        "tag": "wigs"
+      },
+        {
+        "label": {
+          "fr": "Magasin de miroirs",
+          "en": "mirrors"
+        },
+        "tag": "mirrors"
+      },
+        {
+        "label": {
+          "fr": "Magasin de linge de maison",
+          "en": "household_linen"
+        },
+        "tag": "household_linen"
+      },
+        {
+        "label": {
+          "fr": "Magasin de meubles",
+          "en": "decoration"
+        },
+        "tag": "decoration"
+      },
+      {
+        "label": {
+          "fr": "Fournitures de nettoyage",
+          "en": "cleaning_supplies"
+        },
+        "tag": "cleaning_supplies"
+      },
+      {
+        "label": {
+          "fr": "Magasin de jouets",
+          "en": "toy_library"
+        },
+        "tag": "toy_library"
+      },
+      {
+        "label": {
+          "fr": "Papeterie",
+          "en": "printer_ink"
+        },
+        "tag": "printer_ink"
+      },
+      {
+        "label": {
+          "fr": "Fournisseur de portes de garage",
+          "en": "garage_door_supplier"
+        },
+        "tag": "garage_door_supplier"
+      },
+      {
+        "label": {
+          "fr": "Fournisseur de stores",
+          "en": "window_blind"
+        },
+        "tag": "window_blind"
+      }
+    ],
+    "Alimentation": [
+      {
+        "label": {
+          "fr": "Fromage",
+          "en": "Cheese"
+        },
+        "tag": "cheese"
+      },
+       {
+        "label": {
+          "fr": "Confiserie",
+          "en": "Confectionery"
+        },
+        "tag": "confectionery"
+      },
+       {
+        "label": {
+          "fr": "Chocolat",
+          "en": "Chocolate"
+        },
+        "tag": "chocolate"
+      },
+      {
+        "label": {
+          "fr": "Café",
+          "en": "Coffee"
+        },
+        "tag": "coffee"
+      },
+      {
+        "label": {
+          "fr": "Thé",
+          "en": "Tea"
+        },
+        "tag": "tea"
+      },
+       {
+        "label": {
+          "fr": "Vin",
+          "en": "Wine"
+        },
+        "tag": "wine"
+      },
+       {
+        "label": {
+          "fr": "Tabac",
+          "en": "Tabacco"
+        },
+        "tag": "tabacco"
+      },
+       {
+        "label": {
+          "fr": "Tabac",
+          "en": "Tobacco"
+        },
+        "tag": "tobacco"
+      },
+       {
+        "label": {
+          "fr": "Machine distributrice",
+          "en": "Vending Machine"
+        },
+        "tag": "vending_machine"
+      }
+    ],
+    "Maison & Jardin": [
+      {
+        "label": {
+          "fr": "Centre de jardinage",
+          "en": "Garden Centre"
+        },
+        "tag": "garden_centre"
+      },
+      {
+        "label": {
+          "fr": "Mobilier de salle de bain",
+          "en": "Bathroom Furnishing"
+        },
+        "tag": "bathroom_furnishing"
+      },
+      {
+        "label": {
+          "fr": "Salon de repos",
+          "en": "Lounger"
+        },
+        "tag": "lounger"
+      },
+       {
+        "label": {
+          "fr": "Compostage",
+          "en": "Composting"
+        },
+        "tag": "composting"
+      },
+       {
+        "label": {
+          "fr": "Articles de sol",
+          "en": "Flooring"
+        },
+        "tag": "flooring"
+      },
+       {
+        "label": {
+          "fr": "Cheminée",
+          "en": "Fireplace"
+        },
+        "tag": "fireplace"
+      },
+       {
+        "label": {
+          "fr": "Antiquités",
+          "en": "Antiques"
+        },
+        "tag": "antiques"
+      },
+       {
+        "label": {
+          "fr": "Articles d'intérieur",
+          "en": "Accessories"
+        },
+        "tag": "accessories"
+      },
+       {
+        "label": {
+          "fr": "Articles d'extérieur",
+          "en": "Umbrella"
+        },
+        "tag": "umbrella"
+      },
+       {
+        "label": {
+          "fr": "Articles de jardin",
+          "en": "Picnic table"
+        },
+        "tag": "picnic_table"
+      }
+    ],
+    "Mode": [
+      {
+        "label": {
+          "fr": "Lunettes de soleil",
+          "en": "Sunglasses"
+        },
+        "tag": "sunglasses"
+      },
+      {
+        "label": {
+          "fr": "Salon de beauté",
+          "en": "Shoe Shine"
+        },
+        "tag": "shoe_shine"
+      },
+       {
+        "label": {
+          "fr": "Accessoires vestimentaires",
+          "en": "Clothing Accessories"
+        },
+        "tag": "clothing_accessories"
+      },
+      {
+        "label": {
+          "fr": "Articles en cuir",
+          "en": "Leather"
+        },
+        "tag": "leather"
+      }
+    ],
+    "Loisirs": [
+      {
+        "label": {
+          "fr": "Livres",
+          "en": "Bookbinders"
+        },
+        "tag": "bookbinders"
+      },
+      {
+        "label": {
+          "fr": "Cartes",
+          "en": "Cards"
+        },
+        "tag": "cards"
+      },
+      {
+        "label": {
+          "fr": "Pièces de monnaie",
+          "en": "Coins"
+        },
+        "tag": "coins"
+      },
+       {
+        "label": {
+          "fr": "Articles de collection",
+          "en": "Collector"
+        },
+        "tag": "collector"
+      },
+       {
+        "label": {
+          "fr": "Fil",
+          "en": "Yarn"
+        },
+        "tag": "yarn"
+      },
+       {
+        "label": {
+          "fr": "Jeux informatiques",
+          "en": "Computer Games"
+        },
+        "tag": "computer_games"
+      }
+    ],
+    "Automobile": [
+       {
+        "label": {
+          "fr": "Pièces automobiles",
+          "en": "Car Parts"
+        },
+        "tag": "car_parts"
+      }
+    ],
+    "Autres": [
+      {
+        "label": {
+          "fr": "Photo",
+          "en": "Photo"
+        },
+        "tag": "photo"
+      },
+      {
+        "label": {
+            "fr": "Cannabis",
+            "en": "Cannabis"
+        },
+        "tag": "cannabis"
+    },
+      {
+        "label": {
+          "fr": "Self-stockage",
+          "en": "Self Storage"
+        },
+        "tag": "self_storage"
+      },
+       {
+        "label": {
+          "fr": "Studio",
+          "en": "Studio"
+        },
+        "tag": "studio"
+      },
+       {
+        "label": {
+          "fr": "Divers",
+          "en": "Misc"
+        },
+        "tag": "misc"
+      }
+    ]
+  },
+  "Loisirs & Divertissement": {
+    "Sports & Activités": [
+      {
+        "label": {
+          "fr": "Espace d'exercice",
+          "en": "Exercise Area"
+        },
+        "tag": "exercise_area"
+      },
+      {
+        "label": {
+          "fr": "Sport",
+          "en": "Sport"
+        },
+        "tag": "sport"
+      },
+       {
+        "label": {
+          "fr": "Station de fitness",
+          "en": "Fitness Station"
+        },
+        "tag": "fitness_station"
+      },
+       {
+        "label": {
+          "fr": "Bowling",
+          "en": "Bowling Alley"
+        },
+        "tag": "bowling_alley"
+      },
+       {
+        "label": {
+          "fr": "Sports nautiques",
+          "en": "Water Sports"
+        },
+        "tag": "water_sports"
+      },
+      {
+        "label": {
+          "fr": "Piscine",
+          "en": "Swimming_pool"
+        },
+        "tag": "swimming_pool"
+      },
+       {
+            "label": {
+                "fr": "Pêche",
+                "en": "Fishing"
+            },
+            "tag": "fishing"
+        }
+    ],
+    "Social & Culturel": [
+      {
+        "label": {
+          "fr": "Club social",
+          "en": "Social Club"
+        },
+        "tag": "social_club"
+      },
+      {
+        "label": {
+          "fr": "Centre social",
+          "en": "Social Centre"
+        },
+        "tag": "social_centre"
+      },
+      {
+        "label": {
+          "fr": "Groupe de musique",
+          "en": "Bandstand"
+        },
+        "tag": "bandstand"
+      },
+       {
+        "label": {
+          "fr": "Soirée",
+          "en": "Party"
+        },
+        "tag": "party"
+      },
+       {
+        "label": {
+          "fr": "Salle d'exposition",
+          "en": "Gallery"
+        },
+        "tag": "gallery"
+      },
+       {
+        "label": {
+          "fr": "Centre de conférence",
+          "en": "Conference Centre"
+        },
+        "tag": "conference_centre"
+      },
+       {
+        "label": {
+          "fr": "Abris",
+          "en": "Shelter"
+        },
+        "tag": "shelter"
+      },
+      {
+        "label": {
+          "fr": "Aire de repos",
+          "en": "Rest Area"
+        },
+        "tag": "rest_area"
+      },
+      {
+        "label": {
+          "fr": "Zone de loisirs",
+          "en": "Recreation Area"
+        },
+        "tag": "recreation_area"
+      },
+       {
+        "label": {
+          "fr": "Lieu d'abreuvage",
+          "en": "Watering Place"
+        },
+        "tag": "watering_place"
+      }
+    ],
+    "Animaux": [
+      {
+        "label": {
+          "fr": "Animal de compagnie",
+          "en": "Pet"
+        },
+        "tag": "pet"
+      }
+    ],
+    "Autres": [
+       {
+        "label": {
+          "fr": "Enfants",
+          "en": "Childrens"
+        },
+        "tag": "childrens"
+      }
+    ]
+  },
+  "Professionnel": {
+    "Services": [
+      {
+        "label": {
+          "fr": "Design",
+          "en": "Design Agency"
+        },
+        "tag": "design_agency"
+      },
+      {
+        "label": {
+          "fr": "Blanchisserie",
+          "en": "laundry;dry_cleaning"
+        },
+        "tag": "laundry;dry_cleaning"
+      },
+      {
+        "label": {
+          "fr": "Nettoyage à sec",
+          "en": "dry_cleaning;laundry"
+        },
+        "tag": "dry_cleaning;laundry"
+      },
+      {
+        "label": {
+          "fr": "Réparation de montres",
+          "en": "watch_repair"
+        },
+        "tag": "watch_repair"
+      },
+      {
+        "label": {
+          "fr": "Services postaux",
+          "en": "post_depot"
+        },
+        "tag": "post_depot"
+      },
+      {
+        "label": {
+          "fr": "Service de sécurité",
+          "en": "security"
+        },
+        "tag": "security"
+      },
+      {
+        "label": {
+          "fr": "Location de voiture",
+          "en": "car_detailing"
+        },
+        "tag": "car_detailing"
+      },
+      {
+        "label": {
+          "fr": "Toilettage animalier",
+          "en": "pet_grooming"
+        },
+        "tag": "pet_grooming"
+      },
+      {
+        "label": {
+          "fr": "Services de piercing",
+          "en": "piercing"
+        },
+        "tag": "piercing"
+      },
+      {
+        "label": {
+          "fr": "Imprimerie",
+          "en": "printing"
+        },
+        "tag": "printing"
+      },
+       {
+        "label": {
+          "fr": "Imprimante T-Shirt",
+          "en": "T-Shirt_Printer"
+        },
+        "tag": "T-Shirt_Printer"
+      },
+      {
+        "label": {
+          "fr": "Service de plomberie",
+          "en": "plumbing"
+        },
+        "tag": "plumbing"
+      },
+      {
+        "label": {
+          "fr": "Service de réparation",
+          "en": "fixme"
+        },
+        "tag": "fixme"
+      },
+      {
+        "label": {
+          "fr": "Communication",
+          "en": "Communication"
+        },
+        "tag": "communication"
+      },
+      {
+        "label": {
+          "fr": "Information",
+          "en": "Information"
+        },
+        "tag": "information"
+      }
+    ],
+    "Stockage": [
+      {
+        "label": {
+          "fr": "Stockage",
+          "en": "Storage"
+        },
+        "tag": "storage"
+      },
+      {
+        "label": {
+          "fr": "Entrepôt",
+          "en": "Warehouse"
+        },
+        "tag": "warehouse"
+      }
+    ]
+  },
+  "Environnement": {
+    "Environnement": [
+       {
+        "label": {
+          "fr": "Réserve naturelle",
+          "en": "nature_reserve"
+        },
+        "tag": "nature_reserve"
+      },
+      {
+        "label": {
+          "fr": "Hydroponie",
+          "en": "hydroponics"
+        },
+        "tag": "hydroponics"
+      },
+      {
+        "label": {
+          "fr": "Centre de jardinage",
+          "en": "garden_centre;pet"
+        },
+        "tag": "garden_centre;pet"
+      },
+      {
+        "label": {
+          "fr": "Conception paysagère",
+          "en": "landscaping_design"
+        },
+        "tag": "landscaping_design"
+      },
+       {
+        "label": {
+          "fr": "centre de jardinage",
+          "en": "garden_centre;florist"
+        },
+        "tag": "garden_centre;florist"
+      },
+      {
+        "label": {
+          "fr": "Centre de jardinage",
+          "en": "garden_centre"
+        },
+        "tag": "garden_centre;florist"
+      },
+      {
+        "label": {
+          "fr": "Puits d'oiseaux",
+          "en": "bird_bath"
+        },
+        "tag": "bird_bath"
+      }
+    ]
+  },
+  "Événements": {
+    "Événements": [
+      {
+        "label": {
+          "fr": "Salle de fête",
+          "en": "party_hall"
+        },
+        "tag": "party_hall"
+      },
+      {
+        "label": {
+          "fr": "Fête",
+          "en": "party"
+        },
+        "tag": "party"
+      },
+      {
+        "label": {
+          "fr": "Concerts",
+          "en": "concerts"
+        },
+        "tag": "concerts"
+      },
+      {
+        "label": {
+          "fr": "Événements sportifs",
+          "en": "sports"
+        },
+        "tag": "sports"
+      }
+    ]
+  },
+  "Technologie": {
+    "Technologie": [
+      {
+        "label": {
+          "fr": "Mobile phone",
+          "en": "mobile_phone;e-cigarette"
+        },
+        "tag": "mobile_phone;e-cigarette"
+      },
+        {
+        "label": {
+          "fr": "Électronique",
+          "en": "electronic"
+        },
+        "tag": "electronic"
+      },
+        {
+        "label": {
+          "fr": "Imprimante",
+          "en": "printer"
+        },
+        "tag": "printer"
+      }
+    ]
+  },
+  "Domicile": {
+    "Domicile": [
+      {
+        "label": {
+          "fr": "Domicile",
+          "en": "Home"
+        },
+        "tag": "home"
+      }
+    ]
+  }
+}

@@ -84,7 +84,7 @@ export function ValidateModal({ place, open, onClose, onSuccess }: ValidateModal
             </div>
           </div>
 
-          <div className="bg-success/10 border border-success/20 p-4 rounded-lg">
+          <div className="bg-success border border-success/20 p-4 rounded-lg">
             <p className="text-sm text-success-foreground">
               <strong>Confirmer la validation :</strong> Ce lieu sera publié et visible par tous les utilisateurs de l'application.
             </p>

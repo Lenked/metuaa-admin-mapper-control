@@ -22,7 +22,9 @@ import {
   X,
   Image as ImageIcon,
   Phone,
-  Mail
+  Mail,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { ValidateModal } from "./ValidateModal";
 import { RejectModal } from "./RejectModal";
@@ -40,6 +42,8 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
   const [userInfo, setUserInfo] = useState<any>(null);
   const [loadingUser, setLoadingUser] = useState(false);
   const [showMapPopup, setShowMapPopup] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 3;
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -123,10 +127,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
   };
 
   const images = parseImages(place.properties_image);
-  // Correction du typage pour listImages
-  const listImages: { image_data: string }[] = Array.isArray(place.images) && place.images.length > 0 && typeof place.images[0] === 'object' && 'image_data' in place.images[0]
-    ? (place.images as { image_data: string }[])
-    : (Array.isArray(place.images) ? place.images.map(img => ({ image_data: typeof img === 'string' ? img : '' })) : []);
+  const listImages: { image_data: string }[] = [];
 
   return (
     <>
@@ -146,23 +147,39 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
               </div>
               
               {(place.validation_status === 'pending' || place.validation_status === 'synchronized') && (
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    onClick={() => openActionModal('validate')}
-                    className="bg-success hover:bg-success/90 text-success-foreground"
-                  >
-                    <Check className="w-4 h-4 mr-1" />
-                    Valider
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="destructive"
-                    onClick={() => openActionModal('reject')}
-                  >
-                    <X className="w-4 h-4 mr-1" />
-                    Rejeter
-                  </Button>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">Étape {currentStep} sur {totalSteps}</span>
+                    <div className="flex gap-1">
+                      {Array.from({ length: totalSteps }, (_, i) => (
+                        <div
+                          key={i}
+                          className={`w-2 h-2 rounded-full ${
+                            i + 1 <= currentStep ? 'bg-primary' : 'bg-muted'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
+                      disabled={currentStep === 1}
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setCurrentStep(Math.min(totalSteps, currentStep + 1))}
+                      disabled={currentStep === totalSteps}
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>
@@ -234,13 +251,13 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       </p>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {listImages.map((imageBase64, index) => (
-                          <div key={`list-${index}`} className="space-y-2">
+                        {images.map((imageBase64, index) => (
+                          <div key={index} className="space-y-2">
                             <div className="relative group">
                               <img
-                                src={imageBase64.image_data}
-                                alt={`Image liste ${index + 1} de ${place.name}`}
-                                className="w-full h-48 object-cover rounded-lg border border-border opacity-80"
+                                src={`data:image/jpeg;base64,${imageBase64}`}
+                                alt={`Image ${index + 1} de ${place.name}`}
+                                className="w-full h-48 object-cover rounded-lg border border-border"
                                 onError={(e) => {
                                   e.currentTarget.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzlmYTNhOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vbiBkaXNwb25pYmxlPC90ZXh0Pjwvc3ZnPg==";
                                 }}
@@ -552,6 +569,37 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       <p className="text-sm">Historique détaillé non disponible avec la nouvelle structure</p>
                     </div>
                   </div>
+
+                  {/* Actions de validation - uniquement visible à l'étape 3 */}
+                  {(place.validation_status === 'pending' || place.validation_status === 'synchronized') && currentStep === 3 && (
+                    <div className="mt-8 pt-6 border-t">
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <h4 className="font-medium mb-2">Actions disponibles</h4>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            Vous pouvez maintenant valider ou rejeter ce centre d'intérêt
+                          </p>
+                        </div>
+                        
+                        <div className="flex justify-center gap-4">
+                          <Button
+                            onClick={() => openActionModal('validate')}
+                            className="bg-success hover:bg-success/90 text-success-foreground"
+                          >
+                            <Check className="w-4 h-4 mr-2" />
+                            Valider le lieu
+                          </Button>
+                          <Button
+                            variant="destructive"
+                            onClick={() => openActionModal('reject')}
+                          >
+                            <X className="w-4 h-4 mr-2" />
+                            Rejeter le lieu
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>

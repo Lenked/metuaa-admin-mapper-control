@@ -90,7 +90,39 @@ export class PlacesAPI {
     // À faire plus tard
   }
 
-  static async rejectPlace(id: number, reason: string, comment?: string): Promise<any> {
-    // À faire plus tard
+  // Approuver un POI
+  static async approvePlace(poi_id: number, validated_by: number, ip_address?: string): Promise<any> {
+    try {
+      const body: any = { validated_by };
+      if (ip_address) body.ip_address = ip_address;
+      const response = await fetch(`${API_BASE_URL}/api/validation/pois/${poi_id}/approve`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(body)
+      });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error approving POI:', error);
+      throw error;
+    }
+  }
+
+  // Rejeter un POI
+  static async rejectPlace(poi_id: number, rejection_reason: string, validated_by: number, ip_address?: string): Promise<any> {
+    try {
+      const body: any = { rejection_reason, validated_by };
+      if (ip_address) body.ip_address = ip_address;
+      const response = await fetch(`${API_BASE_URL}/api/validation/pois/${poi_id}/reject`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(body)
+      });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error rejecting POI:', error);
+      throw error;
+    }
   }
 }

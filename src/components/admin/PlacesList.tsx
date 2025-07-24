@@ -101,7 +101,7 @@ export function PlacesList() {
         return <Badge variant="secondary">En attente</Badge>;
       case 'synchronized':
         return <Badge variant="secondary">En attente</Badge>;
-      case 'accepted':
+      case 'validated':
         return <Badge className="bg-success text-success-foreground">Validé</Badge>;
       case 'rejected':
         return <Badge variant="destructive">Rejeté</Badge>;

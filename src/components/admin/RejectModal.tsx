@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Place, REJECT_REASONS } from "@/types/places";
 import { PlacesAPI } from "@/services/api";
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,16 @@ export function RejectModal({ place, open, onClose, onSuccess }: RejectModalProp
   const [loading, setLoading] = useState(false);
   const [reason, setReason] = useState("");
   const [comment, setComment] = useState("");
+  const [ipAddress, setIpAddress] = useState<string | undefined>(undefined);
   const { toast } = useToast();
+
+  // Récupérer l'IP publique au montage
+  useEffect(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => setIpAddress(data.ip))
+      .catch(() => setIpAddress(undefined));
+  }, []);
 
   const handleReject = async () => {
     if (!reason) {
@@ -44,16 +53,13 @@ export function RejectModal({ place, open, onClose, onSuccess }: RejectModalProp
       });
       return;
     }
-
     try {
       setLoading(true);
-      await PlacesAPI.rejectPlace(place.id, reason, comment);
-      
+      await PlacesAPI.rejectPlace(place.id, reason, 2, ipAddress);
       toast({
         title: "Lieu rejeté",
         description: `${place.name} a été rejeté`,
       });
-      
       onSuccess();
     } catch (error) {
       toast({

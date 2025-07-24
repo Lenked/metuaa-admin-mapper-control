@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Place } from "@/types/places";
 import { PlacesAPI } from "@/services/api";
 import { Button } from "@/components/ui/button";
@@ -23,17 +23,24 @@ interface ValidateModalProps {
 export function ValidateModal({ place, open, onClose, onSuccess }: ValidateModalProps) {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const [ipAddress, setIpAddress] = useState<string | undefined>(undefined);
+
+  // Récupérer l'IP publique au montage
+  useEffect(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => setIpAddress(data.ip))
+      .catch(() => setIpAddress(undefined));
+  }, []);
 
   const handleValidate = async () => {
     try {
       setLoading(true);
-      await PlacesAPI.validatePlace(place.id);
-      
+      await PlacesAPI.approvePlace(place.id, 2, ipAddress);
       toast({
         title: "Lieu validé",
         description: `${place.name} a été validé avec succès`,
       });
-      
       onSuccess();
     } catch (error) {
       toast({

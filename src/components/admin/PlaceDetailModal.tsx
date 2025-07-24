@@ -51,7 +51,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
         return <Badge variant="secondary">En attente</Badge>;
       case 'synchronized':
         return <Badge variant="secondary">En attente</Badge>;
-      case 'accepted':
+      case 'validated':
         return <Badge className="bg-success text-success-foreground">Validé</Badge>;
       case 'rejected':
         return <Badge variant="destructive">Rejeté</Badge>;
@@ -78,8 +78,14 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
     setModalType(type);
   };
 
-  const closeActionModal = () => {
-    setModalType(null);
+  const closeActionModal = () => setModalType(null);
+
+  // Ferme la modale principale après la fermeture de la modale enfant (animation Radix ~300ms)
+  const handleActionSuccess = () => {
+    closeActionModal();
+    setTimeout(() => {
+      onClose();
+    }, 300);
   };
 
   useEffect(() => {
@@ -293,44 +299,75 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      {loadingUser ? (
-                        <div className="text-center py-8">
-                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-                          <p className="text-muted-foreground mt-2">Chargement des informations utilisateur...</p>
+                    {loadingUser ? (
+                    <div className="text-center py-8">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                      <p className="text-muted-foreground mt-2">Chargement des informations utilisateur...</p>
+                    </div>
+                  ) : userInfo ? (
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Nom complet</label>
+                          <p className="font-medium">{userInfo.name}</p>
                         </div>
-                      ) : userInfo ? (
-                        <div className="space-y-4">
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <label className="text-sm font-medium text-muted-foreground">Nom complet</label>
-                              <p className="font-medium">{userInfo.name}</p>
-                            </div>
-                            <div>
-                              <label className="text-sm font-medium text-muted-foreground">Matricule</label>
-                              <p className="font-mono text-sm">{userInfo.matricule}</p>
-                            </div>
-                            <div>
-                              <label className="text-sm font-medium text-muted-foreground">Email</label>
-                              <p className="flex items-center gap-2">
-                                <Mail className="w-4 h-4" />
-                                {userInfo.email || 'Non disponible'}
-                              </p>
-                            </div>
-                            <div>
-                              <label className="text-sm font-medium text-muted-foreground">Téléphone</label>
-                              <p className="flex items-center gap-2">
-                                <Phone className="w-4 h-4" />
-                                {userInfo.mobile || userInfo.phone || 'Non disponible'}
-                              </p>
-                            </div>
-                          </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Matricule</label>
+                          <p className="font-mono text-sm">{userInfo.matricule}</p>
                         </div>
-                      ) : (
-                        <div className="text-center py-8">
-                          <User className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                          <p className="text-muted-foreground">Informations utilisateur non disponibles</p>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Email</label>
+                          <p className="flex items-center gap-2">
+                            <Mail className="w-4 h-4" />
+                            {userInfo.email || 'Non disponible'}
+                          </p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Téléphone</label>
+                          <p className="flex items-center gap-2">
+                            <Phone className="w-4 h-4" />
+                            {userInfo.mobile || userInfo.phone || 'Non disponible'}
+                          </p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Type de partenaire</label>
+                          <p className="capitalize">{userInfo.partner_type || 'Non spécifié'}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Statut</label>
+                          <Badge variant={userInfo.user_status === 'approved' ? 'default' : 'secondary'}>
+                            {userInfo.user_status === 'approved' ? 'Approuvé' : userInfo.user_status}
+                          </Badge>
+                        </div>
+                      </div>
+                      
+                      {userInfo.function && (
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Fonction</label>
+                          <p>{userInfo.function}</p>
                         </div>
                       )}
+                      
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Date de création</label>
+                          <p>{new Date(userInfo.create_date).toLocaleString('fr-FR')}</p>
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-muted-foreground">Dernière modification</label>
+                          <p>{new Date(userInfo.write_date).toLocaleString('fr-FR')}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <User className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                      <p className="text-muted-foreground">Informations utilisateur non disponibles</p>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Matricule: {place.source_id}
+                      </p>
+                    </div>
+                  )}
                     </CardContent>
                   </Card>
                 </div>
@@ -348,36 +385,95 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Latitude</label>
-                          <p className="font-mono text-sm">{place.centroid_lat}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Longitude</label>
-                          <p className="font-mono text-sm">{place.centroid_lon}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Localité</label>
-                          <p>{place.address_locality}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Pays</label>
-                          <p>{place.address_country}</p>
-                        </div>
-                      </div>
-                      
-                      {place.address_street && (
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Adresse complète</label>
-                          <p className="mt-1">
-                            {[place.address_number, place.address_street, place.address_locality, place.address_country]
-                              .filter(Boolean)
-                              .join(', ')}
-                          </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Latitude</label>
+                      <p className="font-mono">{place.centroid_lat}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Longitude</label>
+                      <p className="font-mono">{place.centroid_lon}</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-muted-foreground">Adresse complète</label>
+                    <div className="bg-muted p-3 rounded-lg space-y-1">
+                      {place.address_name && <p>{place.address_name}</p>}
+                      {place.address_street && <p>{place.address_street}</p>}
+                      <p>
+                        {place.address_locality}, {place.address_county}
+                      </p>
+                      <p>{place.address_region}, {place.address_country}</p>
+                      {place.address_plus_code && (
+                        <p className="text-xs text-muted-foreground">
+                          Plus Code: {place.address_plus_code}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Carte de localisation ou fallback coordonnées */}
+                  {place.centroid_lat && place.centroid_lon ? (
+                    <div className="bg-muted rounded-lg h-64 flex items-center justify-center relative overflow-hidden">
+                      <iframe
+                        title="Carte de localisation"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0, borderRadius: '0.5rem', minHeight: '16rem' }}
+                        src={`https://www.openstreetmap.org/export/embed.html?bbox=${place.centroid_lon-0.005}%2C${place.centroid_lat-0.005}%2C${place.centroid_lon+0.005}%2C${place.centroid_lat+0.005}&layer=mapnik&marker=${place.centroid_lat}%2C${place.centroid_lon}`}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        id="osm-map-iframe"
+                      ></iframe>
+                      {/* Marqueur custom en overlay + popup au clic */}
+                      <button
+                        type="button"
+                        className="absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                        style={{ background: 'none', border: 'none', outline: 'none' }}
+                        onClick={() => setShowMapPopup(true)}
+                        aria-label="Afficher les détails du point"
+                      >
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="16" cy="16" r="12" fill="#2563eb" stroke="#fff" strokeWidth="3" />
+                          <circle cx="16" cy="16" r="5" fill="#fff" />
+                        </svg>
+                      </button>
+                      {showMapPopup && (
+                        <div
+                          className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-16 bg-white rounded-lg shadow-lg p-4 min-w-[220px] border border-border animate-fade-in"
+                          style={{ minWidth: 220 }}
+                        >
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="font-semibold text-primary">{place.name}</span>
+                            <button
+                              className="ml-2 text-gray-400 hover:text-gray-700"
+                              onClick={() => setShowMapPopup(false)}
+                              aria-label="Fermer la popup"
+                            >
+                              ×
+                            </button>
+                          </div>
+                          <div className="text-xs text-muted-foreground mb-1">{place.address_name || place.address_locality}</div>
+                          <div className="text-xs text-muted-foreground">
+                            Lat: {place.centroid_lat.toFixed(6)}<br />
+                            Lon: {place.centroid_lon.toFixed(6)}
+                          </div>
                         </div>
                       )}
-                    </CardContent>
+                    </div>
+                  ) : (
+                    <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
+                      <div className="text-center text-muted-foreground">
+                        <MapPin className="w-8 h-8 mx-auto mb-2" />
+                        <p>Carte de localisation non disponible</p>
+                        <p className="text-xs">
+                          {place.centroid_lat?.toFixed(6)}, {place.centroid_lon?.toFixed(6)}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
                   </Card>
                 </div>
               )}
@@ -387,63 +483,52 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                   <h3 className="text-lg font-semibold mb-4">Propriétés</h3>
                   
                   <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Tag className="w-5 h-5" />
-                        Propriétés du lieu
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Source</label>
-                          <p className="capitalize">{place.source}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Layer</label>
-                          <p>{place.layer}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Attraction</label>
-                          <p>{place.properties_attraction}</p>
-                        </div>
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Date d'ajout</label>
-                          <p>{new Date(place.date_added).toLocaleString('fr-FR')}</p>
-                        </div>
-                      </div>
-                      
-                      {place.properties_wikidata && (
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Lien Wikidata</label>
-                          <a 
-                            href={place.properties_wikidata} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline flex items-center gap-1 mt-1"
-                          >
-                            <Globe className="w-4 h-4" />
-                            {place.properties_wikidata}
-                          </a>
-                        </div>
-                      )}
-                      
-                      {place.properties_wikipedia && (
-                        <div>
-                          <label className="text-sm font-medium text-muted-foreground">Lien Wikipedia</label>
-                          <a 
-                            href={place.properties_wikipedia} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline flex items-center gap-1 mt-1"
-                          >
-                            <Globe className="w-4 h-4" />
-                            {place.properties_wikipedia}
-                          </a>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Tag className="w-5 h-5" />
+                    Propriétés et métadonnées
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Layer</label>
+                      <p className="capitalize">{place.layer}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Attraction</label>
+                      <p>{place.properties_attraction ? 'Oui' : 'Non'}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Source ID</label>
+                      <p className="font-mono text-xs">{place.source_id}</p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Statut</label>
+                      <p className="capitalize">{place.validation_status}</p>
+                    </div>
+                  </div>
+
+                  {place.properties_wikidata && (
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Wikidata</label>
+                      <p className="font-mono text-xs">{place.properties_wikidata}</p>
+                    </div>
+                  )}
+
+                  {place.properties_wikipedia && (
+                    <div>
+                      <label className="text-sm font-medium text-muted-foreground">Wikipedia</label>
+                      <p className="text-xs">{place.properties_wikipedia}</p>
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="text-sm font-medium text-muted-foreground">Source</label>
+                    <p className="text-xs break-all">{place.source}</p>
+                  </div>
+                </CardContent>
+              </Card>
                 </div>
               )}
 
@@ -557,10 +642,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
           place={place}
           open={true}
           onClose={closeActionModal}
-          onSuccess={() => {
-            closeActionModal();
-            onClose(); // Close parent modal too
-          }}
+          onSuccess={handleActionSuccess}
         />
       )}
       
@@ -569,10 +651,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
           place={place}
           open={true}
           onClose={closeActionModal}
-          onSuccess={() => {
-            closeActionModal();
-            onClose(); // Close parent modal too
-          }}
+          onSuccess={handleActionSuccess}
         />
       )}
       <style>{`

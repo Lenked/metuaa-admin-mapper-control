@@ -49,7 +49,7 @@ export function DashboardStats() {
         return <Badge variant="secondary">En attente</Badge>;
       case 'synchronized':
         return <Badge variant="secondary">En attente</Badge>;
-      case 'accepted':
+      case 'validated':
         return <Badge className="bg-success text-success-foreground">Validé</Badge>;
       case 'rejected':
         return <Badge variant="destructive">Rejeté</Badge>;
@@ -147,7 +147,7 @@ export function DashboardStats() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {recentPlaces.map((place) => (
+            {recentPlaces.slice(0, 5).map((place) => (
               <div key={place.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                 <div className="flex items-center gap-3">
                   <MapPin className="w-4 h-4 text-muted-foreground" />

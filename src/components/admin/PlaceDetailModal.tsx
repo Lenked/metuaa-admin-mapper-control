@@ -43,7 +43,7 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
   const [loadingUser, setLoadingUser] = useState(false);
   const [showMapPopup, setShowMapPopup] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 3;
+  const totalSteps = 6;
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -190,9 +190,8 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
             <div className="min-h-[400px]">
               {currentStep === 1 && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold mb-4">Informations générales et images</h3>
+                  <h3 className="text-lg font-semibold mb-4">Général</h3>
                   
-                  {/* General Info */}
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -228,8 +227,13 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       )}
                     </CardContent>
                   </Card>
+                </div>
+              )}
 
-                  {/* Images */}
+              {currentStep === 2 && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold mb-4">Images {images.length > 0 && <span className="ml-1 text-xs">({images.length})</span>}</h3>
+                  
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -277,11 +281,10 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                 </div>
               )}
 
-              {currentStep === 2 && (
+              {currentStep === 3 && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold mb-4">Utilisateur et localisation</h3>
+                  <h3 className="text-lg font-semibold mb-4">Utilisateur</h3>
                   
-                  {/* User Info */}
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -330,8 +333,13 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       )}
                     </CardContent>
                   </Card>
+                </div>
+              )}
 
-                  {/* Location Info */}
+              {currentStep === 4 && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold mb-4">Localisation</h3>
+                  
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -374,11 +382,10 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                 </div>
               )}
 
-              {currentStep === 3 && (
+              {currentStep === 5 && (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold mb-4">Propriétés et actions</h3>
+                  <h3 className="text-lg font-semibold mb-4">Propriétés</h3>
                   
-                  {/* Properties */}
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -437,8 +444,46 @@ export function PlaceDetailModal({ place, open, onClose }: PlaceDetailModalProps
                       )}
                     </CardContent>
                   </Card>
+                </div>
+              )}
 
-                  {/* Action Buttons - Only shown in step 3 for pending places */}
+              {currentStep === 6 && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold mb-4">Historique</h3>
+                  
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5" />
+                        Historique du lieu
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                          <div>
+                            <p className="font-medium">Lieu ajouté</p>
+                            <p className="text-sm text-muted-foreground">
+                              {new Date(place.date_added).toLocaleString('fr-FR')}
+                            </p>
+                          </div>
+                          <Badge variant="outline">Créé</Badge>
+                        </div>
+                        
+                        <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                          <div>
+                            <p className="font-medium">Statut actuel</p>
+                            <p className="text-sm text-muted-foreground">
+                              En attente de validation
+                            </p>
+                          </div>
+                          {getStatusBadge(place.validation_status)}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Action Buttons - Only shown in step 6 for pending places */}
                   {(place.validation_status === 'pending' || place.validation_status === 'synchronized') && (
                     <Card>
                       <CardHeader>

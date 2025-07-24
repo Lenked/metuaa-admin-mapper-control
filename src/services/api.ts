@@ -125,4 +125,19 @@ export class PlacesAPI {
       throw error;
     }
   }
+
+  // Récupérer l'historique des validations/rejets
+  static async getValidationHistory(skip = 0, limit = 100): Promise<any[]> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/validation/validation-history?skip=${skip}&limit=${limit}`, {
+        method: 'GET',
+        headers: getHeaders(),
+      });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching validation history:', error);
+      throw error;
+    }
+  }
 }

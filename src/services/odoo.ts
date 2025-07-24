@@ -28,4 +28,23 @@ export class OdooAPI {
       throw error;
     }
   }
+
+  static async getUserInfoWithId(id: BigInteger): Promise<any> {
+    try {
+      const domain = encodeURIComponent(`[('id','=','${id}')]`);
+      const response = await fetch(`${API_BASE_URL}/res.partner/search?domain=${domain}`, {
+        method: 'GET',
+        headers: getHeaders()
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching user info:', error);
+      throw error;
+    }
+  }
 }

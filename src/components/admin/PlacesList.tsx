@@ -164,7 +164,7 @@ export function PlacesList() {
               <SelectContent>
                 <SelectItem value="all">Tous les statuts</SelectItem>
                 <SelectItem value="pending">En attente</SelectItem>
-                <SelectItem value="synchronized">Validé</SelectItem>
+                <SelectItem value="validated">Validé</SelectItem>
                 <SelectItem value="rejected">Rejeté</SelectItem>
               </SelectContent>
             </Select>
@@ -289,6 +289,7 @@ export function PlacesList() {
           place={selectedPlace}
           open={true}
           onClose={closeModal}
+          onSuccess={handleActionComplete}
         />
       )}
     </div>

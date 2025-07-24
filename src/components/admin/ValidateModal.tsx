@@ -33,6 +33,16 @@ export function ValidateModal({ place, open, onClose, onSuccess }: ValidateModal
       .catch(() => setIpAddress(undefined));
   }, []);
 
+  /**
+   * Valide un lieu en appelant l'API Places
+   *
+   * @async
+   * @function
+   * @param {number} placeId - Identifiant du lieu
+   * @param {number} userId - Identifiant de l'utilisateur qui valide
+   * @param {string} ipAddress - Adresse IP de l'utilisateur qui valide
+   * @throws {Error} Si la validation échoue
+   */
   const handleValidate = async () => {
     try {
       setLoading(true);
@@ -41,7 +51,7 @@ export function ValidateModal({ place, open, onClose, onSuccess }: ValidateModal
         title: "Lieu validé",
         description: `${place.name} a été validé avec succès`,
       });
-      onSuccess();
+      onSuccess(); // Appelle handleActionSuccess du parent
     } catch (error) {
       toast({
         title: "Erreur",

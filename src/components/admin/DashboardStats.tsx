@@ -24,7 +24,7 @@ export function DashboardStats() {
         setStats({
           total: places.length,
           pending: places.filter(p => p.validation_status === 'pending' || p.validation_status === 'synchronized').length,
-          validated: places.filter(p => p.validation_status === 'accepted').length,
+          validated: places.filter(p => p.validation_status === 'validated').length,
           rejected: places.filter(p => p.validation_status === 'rejected').length,
           loading: false
         });

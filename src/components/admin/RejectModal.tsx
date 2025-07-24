@@ -60,7 +60,7 @@ export function RejectModal({ place, open, onClose, onSuccess }: RejectModalProp
         title: "Lieu rejeté",
         description: `${place.name} a été rejeté`,
       });
-      onSuccess();
+      onSuccess(); // Appelle handleActionSuccess du parent
     } catch (error) {
       toast({
         title: "Erreur",

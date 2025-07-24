@@ -240,35 +240,13 @@ export function PlacesList() {
                     {new Date(place.date_added).toLocaleDateString('fr-FR')}
                   </TableCell>
                   <TableCell className="text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      {(place.validation_status === 'pending' || place.validation_status === 'synchronized') && (
-                        <>
-                          <Button
-                            size="sm"
-                            onClick={() => openModal('validate', place)}
-                            className="bg-success hover:bg-success/90 text-success-foreground"
-                          >
-                            <Check className="w-4 h-4 mr-1" />
-                            Valider
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="destructive"
-                            onClick={() => openModal('reject', place)}
-                          >
-                            <X className="w-4 h-4 mr-1" />
-                            Rejeter
-                          </Button>
-                        </>
-                      )}
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => openModal('detail', place)}
-                      >
-                        Détails
-                      </Button>
-                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => openModal('detail', place)}
+                    >
+                      Voir détails
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

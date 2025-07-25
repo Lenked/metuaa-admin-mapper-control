@@ -132,7 +132,7 @@ export default function History() {
                     <tr className="bg-muted">
                       <th className="px-3 py-2 text-left">Date</th>
                       <th className="px-3 py-2 text-left">Action</th>
-                      <th className="px-3 py-2 text-left">POI</th>
+                      {/* <th className="px-3 py-2 text-left">POI</th> */}
                       <th className="px-3 py-2 text-left">Raison</th>
                       <th className="px-3 py-2 text-left">Modérateur</th>
                       <th className="px-3 py-2 text-left">IP</th>
@@ -151,7 +151,7 @@ export default function History() {
                             <Badge variant="outline">{item.action}</Badge>
                           )}
                         </td>
-                        <td className="px-3 py-2">
+                        {/* <td className="px-3 py-2">
                           {loadingUsers[item.poi_id] ? (
                             <Loader2 className="w-4 h-4 animate-spin text-muted-foreground inline" />
                           ) : userInfos[item.poi_id] ? (
@@ -162,7 +162,7 @@ export default function History() {
                           ) : (
                             <span className="text-xs text-muted-foreground flex items-center gap-1"><User className="w-3 h-3" />Inconnu</span>
                           )}
-                        </td>
+                        </td> */}
                         <td className="px-3 py-2">{getRejectLabel(item.rejection_reason)}</td>
                         <td className="px-3 py-2">
                           {loadingModerators[item.performed_by] ? (

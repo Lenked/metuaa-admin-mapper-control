@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, X, MapPin, Filter, Search } from "lucide-react";
+import { Check, X, MapPin, Filter, Search, Loader } from "lucide-react";
 import { ValidateModal } from "./ValidateModal";
 import { RejectModal } from "./RejectModal";
 import { PlaceDetailModal } from "./PlaceDetailModal";
@@ -33,6 +33,7 @@ export function PlacesList() {
   const [searchInput, setSearchInput] = useState(''); // Ajout état local pour la recherche
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
   const [modalType, setModalType] = useState<'validate' | 'reject' | 'detail' | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const { toast } = useToast();
 
   const loadPlaces = async () => {
@@ -90,9 +91,18 @@ export function PlacesList() {
     setModalType(null);
   };
 
-  const handleActionComplete = () => {
-    closeModal();
-    loadPlaces(); // Refresh the list
+  const handleActionComplete = async () => {
+    setIsRefreshing(true);
+    try {
+      await loadPlaces(); 
+    } catch (error) {
+      toast({ title: "Erreur", variant: "destructive" });
+    } finally {
+      setTimeout(() => {
+        setIsRefreshing(false);
+        closeModal();
+      }, 300);
+    }
   };
 
   const getStatusBadge = (validation_status: string) => {
@@ -240,13 +250,15 @@ export function PlacesList() {
                     {new Date(place.date_added).toLocaleDateString('fr-FR')}
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => openModal('detail', place)}
-                    >
-                      Voir détails
-                    </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => !isRefreshing && openModal('detail', place)}
+                    disabled={isRefreshing}
+                  >
+                    {isRefreshing ? <Loader className="mr-2" /> : null}
+                    Voir détails
+                  </Button>
                   </TableCell>
                 </TableRow>
               ))}

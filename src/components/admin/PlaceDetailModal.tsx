@@ -25,6 +25,7 @@ import {
   ChevronLeft,
   ChevronRight,
   AlertTriangle,
+  Loader,
 } from "lucide-react";
 import { PlacesAPI } from "@/services/api";
 import { OdooAPI } from "@/services/odoo";
@@ -39,6 +40,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { REJECT_REASONS } from "@/types/places";
+import './index.css'
 
 interface PlaceDetailModalProps {
   place: Place;
@@ -138,8 +140,7 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
       setView("success");
       toast({ title: "Lieu validé", description: `${place.name} a été validé avec succès` });
       setTimeout(() => {
-        setView("detail");
-        onClose();
+        onClose(); // Ferme après 1.2s
         onSuccess?.();
       }, 1200);
     } catch {
@@ -152,32 +153,35 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
   // Rejet amélioré avec raison/commentaire
   const handleReject = async () => {
     if (!reason) {
-      toast({
-        title: "Raison requise",
-        description: "Veuillez sélectionner une raison de rejet",
-        variant: "destructive",
-      });
+      toast({ title: "Raison requise", variant: "destructive" });
       return;
     }
+  
     setLoading(true);
     try {
       await PlacesAPI.rejectPlace(place.id, reason, 2, "ip");
       setView("success");
       toast({ title: "Lieu rejeté", description: `${place.name} a été rejeté` });
+      
       setTimeout(() => {
-        setView("detail");
-        onClose();
+        onClose(); // Fermeture différée
         onSuccess?.();
       }, 1200);
     } catch {
-      toast({ title: "Erreur", description: "Impossible de rejeter le lieu", variant: "destructive" });
+      toast({ title: "Erreur", variant: "destructive" });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <Dialog 
+      key={`place-modal-${place.id}`}
+      open={open} 
+      onOpenChange={(isOpen) => {
+        if (!isOpen && !loading) onClose(); // Ne ferme pas si chargement en cours
+      }}
+    >
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         {view === "detail" && (
           <>
@@ -444,6 +448,7 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
                     {place.centroid_lat && place.centroid_lon ? (
                       <div className="bg-muted rounded-lg h-64 flex items-center justify-center relative overflow-hidden">
                         <iframe
+                          key={`map-${place.id}-${showMapPopup}`} // Change si `place.id` ou `showMapPopup` change
                           title="Carte de localisation"
                           width="100%"
                           height="100%"
@@ -484,7 +489,8 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
                             <div className="text-xs text-muted-foreground mb-1">{place.address_name || place.address_locality}</div>
                             <div className="text-xs text-muted-foreground">
                               Lat: {place.centroid_lat.toFixed(6)}<br />
-                              Lon: {place.centroid_lon.toFixed(6)}
+                              Lon: {place.centroid_lon.toFixed(6)}<br />
+                              Postcode : {place.address_plus_code}
                             </div>
                           </div>
                         )}
@@ -714,7 +720,7 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
               >
                 {loading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                    <Loader className="w-4 h-4 mr-2" /> {/* Utilisez un composant dédié */}
                     Validation...
                   </>
                 ) : (
@@ -806,7 +812,7 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
               >
                 {loading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                    <Loader className="w-4 h-4 mr-2" /> {/* Composant stable */}
                     Rejet...
                   </>
                 ) : (
@@ -828,13 +834,7 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
         )}
       </DialogContent>
       <style>{`
-  @keyframes fade-in {
-    from { opacity: 0; transform: scale(0.98); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  .animate-fade-in {
-    animation: fade-in 0.25s cubic-bezier(0.4,0,0.2,1);
-  }
+ 
 `}</style>
     </Dialog>
   );

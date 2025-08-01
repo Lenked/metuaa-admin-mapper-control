@@ -140,8 +140,10 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
       setView("success");
       toast({ title: "Lieu validé", description: `${place.name} a été validé avec succès` });
       setTimeout(() => {
-        onClose(); // Ferme après 1.2s
-        onSuccess?.();
+        onClose(); // Ferme d'abord le modal
+        setTimeout(() => {
+          onSuccess?.(); // Puis appelle onSuccess après fermeture
+        }, 100);
       }, 1200);
     } catch {
       toast({ title: "Erreur", description: "Impossible de valider le lieu", variant: "destructive" });
@@ -164,8 +166,10 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
       toast({ title: "Lieu rejeté", description: `${place.name} a été rejeté` });
       
       setTimeout(() => {
-        onClose(); // Fermeture différée
-        onSuccess?.();
+        onClose(); // Ferme d'abord le modal
+        setTimeout(() => {
+          onSuccess?.(); // Puis appelle onSuccess après fermeture
+        }, 100);
       }, 1200);
     } catch {
       toast({ title: "Erreur", variant: "destructive" });

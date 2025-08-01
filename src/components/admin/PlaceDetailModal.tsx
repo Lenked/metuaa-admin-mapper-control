@@ -35,6 +35,7 @@ import { UserStep } from "./place-steps/UserStep";
 import { LocationStep } from "./place-steps/LocationStep";
 import { PropertiesStep } from "./place-steps/PropertiesStep";
 import { HistoryStep } from "./place-steps/HistoryStep";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 interface PlaceDetailModalProps {
   place: Place;
@@ -190,95 +191,110 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
           </div>
 
           {canShowActions && (
-            <div className="border-t pt-6 space-y-4">
+            <div className="border-t pt-6 space-y-6">
               <h3 className="text-lg font-semibold">Actions de validation</h3>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Validation */}
-                <div className="space-y-4">
-                  <div className="bg-success/10 border border-success/20 p-4 rounded-lg">
-                    <h4 className="font-semibold text-success-foreground mb-2">Valider le lieu</h4>
-                    <p className="text-sm text-success-foreground/80">
-                      Ce lieu sera publié et visible par tous les utilisateurs.
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Validation Card */}
+                <Card className="border-success/20 bg-success/5">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-success">
+                      <Check className="w-5 h-5" />
+                      Valider le lieu
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                      Confirmez que ce lieu est correct et prêt à être publié. Il sera alors visible par tous les utilisateurs.
                     </p>
-                  </div>
-                  <Button 
-                    onClick={handleValidate} 
-                    disabled={loading}
-                    className="w-full bg-success hover:bg-success/90 text-success-foreground"
-                  >
-                    {loading ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                        Validation...
-                      </>
-                    ) : (
-                      <>
-                        <Check className="w-4 h-4 mr-2" />
-                        Valider le lieu
-                      </>
-                    )}
-                  </Button>
-                </div>
+                    <Button 
+                      onClick={handleValidate} 
+                      disabled={loading}
+                      className="w-full bg-success hover:bg-success/90 text-success-foreground"
+                    >
+                      {loading ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                          Validation en cours...
+                        </>
+                      ) : (
+                        <>
+                          <Check className="w-4 h-4 mr-2" />
+                          Valider définitivement
+                        </>
+                      )}
+                    </Button>
+                  </CardContent>
+                </Card>
 
-                {/* Rejet */}
-                <div className="space-y-4">
-                  <div className="bg-destructive/10 border border-destructive/20 p-4 rounded-lg">
-                    <h4 className="font-semibold text-destructive-foreground mb-2">Rejeter le lieu</h4>
-                    <p className="text-sm text-destructive-foreground/80">
-                      Cette action est permanente et ne peut pas être annulée.
+                {/* Rejet Card */}
+                <Card className="border-destructive/20 bg-destructive/5">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-destructive">
+                      <X className="w-5 h-5" />
+                      Rejeter le lieu
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                      Indiquez pourquoi ce lieu ne peut pas être validé. L'utilisateur créateur sera notifié.
                     </p>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div>
-                      <Label htmlFor="reason">Raison du rejet *</Label>
-                      <Select value={reason} onValueChange={setReason}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Sélectionner une raison" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {REJECT_REASONS.map((r) => (
-                            <SelectItem key={r.value} value={r.value}>
-                              {r.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                    
+                    <div className="space-y-3">
+                      <div>
+                        <Label htmlFor="reason">Raison du rejet <span className="text-destructive">*</span></Label>
+                        <Select value={reason} onValueChange={setReason}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Choisir une raison" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {REJECT_REASONS.map((r) => (
+                              <SelectItem key={r.value} value={r.value}>
+                                {r.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="comment">Commentaire (optionnel)</Label>
+                        <Textarea
+                          id="comment"
+                          placeholder="Détails supplémentaires pour l'utilisateur..."
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                          className="resize-none"
+                          rows={2} // Réduit la hauteur
+                        />
+                      </div>
                     </div>
                     
-                    <div>
-                      <Label htmlFor="comment">Commentaire (optionnel)</Label>
-                      <Textarea
-                        id="comment"
-                        placeholder="Commentaire supplémentaire..."
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        className="resize-none"
-                        rows={3}
-                      />
-                    </div>
-                  </div>
-                  
-                  <Button 
-                    variant="destructive" 
-                    onClick={handleReject} 
-                    disabled={loading || !reason}
-                    className="w-full"
-                  >
-                    {loading ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                        Rejet...
-                      </>
-                    ) : (
-                      <>
-                        <X className="w-4 h-4 mr-2" />
-                        Rejeter le lieu
-                      </>
-                    )}
-                  </Button>
-                </div>
+                    <Button 
+                      variant="destructive" 
+                      onClick={handleReject} 
+                      disabled={loading || !reason}
+                      className="w-full"
+                    >
+                      {loading ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                          Rejet en cours...
+                        </>
+                      ) : (
+                        <>
+                          <X className="w-4 h-4 mr-2" />
+                          Rejeter le lieu
+                        </>
+                      )}
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+              
+              {/* Message d'information */}
+              <div className="text-center text-xs text-muted-foreground pt-2">
+                <p>Une fois l'action effectuée, le statut du lieu sera mis à jour définitivement.</p>
               </div>
             </div>
           )}

@@ -1,0 +1,22 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: web-daddyfoundation
+  namespace: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-daddyfoundation
+  template:
+    metadata:
+      labels:
+        app: web-daddyfoundation
+    spec:
+      containers:
+        - name: web-daddyfoundation
+          image: dpaved/web-daddyfoundation:1.0
+
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

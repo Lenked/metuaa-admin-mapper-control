@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 res.json
+
+.history/
+.history

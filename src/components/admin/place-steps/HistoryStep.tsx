@@ -42,7 +42,7 @@ export function HistoryStep({ place }: HistoryStepProps) {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-muted rounded-lg">
             <div>
               <p className="text-sm font-medium text-muted-foreground">Statut actuel</p>
-              <p className="text-lg font-semibold">{getStatusBadge(place.validation_status)}</p>
+              <div className="text-lg font-semibold">{getStatusBadge(place.validation_status)}</div>
             </div>
             <div className="text-right">
               <p className="text-sm text-muted-foreground">Date d'ajout</p>

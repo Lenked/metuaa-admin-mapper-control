@@ -3,6 +3,7 @@ import { Place, REJECT_REASONS } from "@/types/places";
 import { PlacesAPI } from "@/services/api";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Dialog,
   DialogContent,
@@ -35,6 +36,7 @@ export function RejectModal({ place, open, onClose, onSuccess }: RejectModalProp
   const [comment, setComment] = useState("");
   const [ipAddress, setIpAddress] = useState<string | undefined>(undefined);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   // Récupérer l'IP publique au montage
   useEffect(() => {
@@ -53,9 +55,19 @@ export function RejectModal({ place, open, onClose, onSuccess }: RejectModalProp
       });
       return;
     }
+
+    if (!user?.id) {
+      toast({
+        title: "Erreur",
+        description: "Utilisateur non authentifié",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
       setLoading(true);
-      await PlacesAPI.rejectPlace(place.id, reason, 2, ipAddress);
+      await PlacesAPI.rejectPlace(place.id, reason, user.id, ipAddress);
       toast({
         title: "Lieu rejeté",
         description: `${place.name} a été rejeté`,

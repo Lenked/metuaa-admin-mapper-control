@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Place } from "@/types/places";
 import { PlacesAPI } from "@/services/api";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Dialog,
   DialogContent,
@@ -23,6 +24,7 @@ interface ValidateModalProps {
 export function ValidateModal({ place, open, onClose, onSuccess }: ValidateModalProps) {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
   const [ipAddress, setIpAddress] = useState<string | undefined>(undefined);
 
   // Récupérer l'IP publique au montage
@@ -44,9 +46,18 @@ export function ValidateModal({ place, open, onClose, onSuccess }: ValidateModal
    * @throws {Error} Si la validation échoue
    */
   const handleValidate = async () => {
+    if (!user?.id) {
+      toast({
+        title: "Erreur",
+        description: "Utilisateur non authentifié",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     try {
       setLoading(true);
-      await PlacesAPI.approvePlace(place.id, 2, ipAddress);
+      await PlacesAPI.approvePlace(place.id, user.id, ipAddress);
       toast({
         title: "Lieu validé",
         description: `${place.name} a été validé avec succès`,

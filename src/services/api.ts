@@ -10,10 +10,10 @@ const getHeaders = () => ({
 });
 
 export class PlacesAPI {
-  // Appels au backend local
-  static async getPendingPois(): Promise<any> {
+  // Appels au backend local avec pagination
+  static async getPendingPois(skip = 0, limit = 100): Promise<any> {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/pois/pending`, {
+      const response = await fetch(`${API_BASE_URL}/api/pois/pending?skip=${skip}&limit=${limit}`, {
         method: 'GET',
         headers: getHeaders()
       });
@@ -25,9 +25,23 @@ export class PlacesAPI {
     }
   }
 
-  static async getApprovedPois(): Promise<any> {
+  static async getAllPois(skip = 0, limit = 100): Promise<any> {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/pois/approved`, {
+      const response = await fetch(`${API_BASE_URL}/api/pois/all?skip=${skip}&limit=${limit}`, {
+        method: 'GET',
+        headers: getHeaders()
+      });
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching all pois:', error);
+      throw error;
+    }
+  }
+
+  static async getApprovedPois(skip = 0, limit = 100): Promise<any> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/pois/approved?skip=${skip}&limit=${limit}`, {
         method: 'GET',
         headers: getHeaders()
       });
@@ -39,9 +53,9 @@ export class PlacesAPI {
     }
   }
 
-  static async getRejectedPois(): Promise<any> {
+  static async getRejectedPois(skip = 0, limit = 100): Promise<any> {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/pois/rejected`, {
+      const response = await fetch(`${API_BASE_URL}/api/pois/rejected?skip=${skip}&limit=${limit}`, {
         method: 'GET',
         headers: getHeaders()
       });

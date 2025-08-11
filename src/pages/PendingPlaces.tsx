@@ -1,5 +1,5 @@
 import { AdminLayout } from "@/components/admin/AdminLayout";
-import { PlacesList } from "@/components/admin/PlacesList";
+import { PendingPlacesList } from "@/components/admin/PendingPlacesList";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Clock } from "lucide-react";
 
@@ -28,7 +28,7 @@ export default function PendingPlaces() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <PlacesList />
+            <PendingPlacesList />
           </CardContent>
         </Card>
       </div>

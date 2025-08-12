@@ -67,6 +67,19 @@ export class PlacesAPI {
     }
   }
 
+  // Get single POI by ID (fetch from all POIs and filter)
+  static async getPoiById(poiId: number): Promise<any | null> {
+    try {
+      // Try to find in all POIs with a larger limit to increase chances
+      const allPois = await PlacesAPI.getAllPois(0, 1000);
+      const poi = allPois.find(p => p.id === poiId);
+      return poi || null;
+    } catch (error) {
+      console.error('Error fetching POI by ID:', error);
+      return null;
+    }
+  }
+
   static async syncPoisFromOdoo(): Promise<any> {
     try {
       const response = await fetch(`${API_BASE_URL}/api/pois/sync-from-odoo`, {

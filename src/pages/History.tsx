@@ -1,12 +1,13 @@
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { History as HistoryIcon, Check, X, Loader2, User } from "lucide-react";
+import { History as HistoryIcon, Check, X, Loader2, User, Eye } from "lucide-react";
 import { useEffect, useState } from "react";
 import { PlacesAPI } from "@/services/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { OdooAPI } from "@/services/odoo";
-import { REJECT_REASONS } from "@/types/places";
+import { REJECT_REASONS, Place } from "@/types/places";
+import { PlaceDetailModal } from "@/components/admin/PlaceDetailModal";
 
 function getRejectLabel(reason) {
   const found = REJECT_REASONS.find(r => r.value === reason);
@@ -23,6 +24,8 @@ export default function History() {
   const [loadingUsers, setLoadingUsers] = useState<Record<number, boolean>>({});
   const [moderatorInfos, setModeratorInfos] = useState<Record<number|string, any>>({});
   const [loadingModerators, setLoadingModerators] = useState<Record<number|string, boolean>>({});
+  const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
 
   const fetchHistory = async () => {
     setLoading(true);
@@ -89,6 +92,18 @@ export default function History() {
     // eslint-disable-next-line
   }, [skip]);
 
+  const handleViewDetails = async (poiId: number) => {
+    try {
+      const place = await PlacesAPI.getPoiById(poiId);
+      if (place) {
+        setSelectedPlace(place);
+        setDetailModalOpen(true);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération des détails:', error);
+    }
+  };
+
   return (
     <AdminLayout>
       <div className="space-y-6">
@@ -132,10 +147,11 @@ export default function History() {
                     <tr className="bg-muted">
                       <th className="px-3 py-2 text-left">Date</th>
                       <th className="px-3 py-2 text-left">Action</th>
-                      {/* <th className="px-3 py-2 text-left">POI</th> */}
+                      <th className="px-3 py-2 text-left">POI ID</th>
                       <th className="px-3 py-2 text-left">Raison</th>
                       <th className="px-3 py-2 text-left">Modérateur</th>
                       <th className="px-3 py-2 text-left">IP</th>
+                      <th className="px-3 py-2 text-left">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,18 +167,9 @@ export default function History() {
                             <Badge variant="outline">{item.action}</Badge>
                           )}
                         </td>
-                        {/* <td className="px-3 py-2">
-                          {loadingUsers[item.poi_id] ? (
-                            <Loader2 className="w-4 h-4 animate-spin text-muted-foreground inline" />
-                          ) : userInfos[item.poi_id] ? (
-                            <div>
-                              <span className="font-semibold">{userInfos[item.poi_id].name}</span>
-                              <div className="text-xs text-muted-foreground">{userInfos[item.poi_id].email || userInfos[item.poi_id].matricule || ''}</div>
-                            </div>
-                          ) : (
-                            <span className="text-xs text-muted-foreground flex items-center gap-1"><User className="w-3 h-3" />Inconnu</span>
-                          )}
-                        </td> */}
+                        <td className="px-3 py-2">
+                          <Badge variant="outline">#{item.poi_id}</Badge>
+                        </td>
                         <td className="px-3 py-2">{getRejectLabel(item.rejection_reason)}</td>
                         <td className="px-3 py-2">
                           {loadingModerators[item.performed_by] ? (
@@ -174,6 +181,16 @@ export default function History() {
                           )}
                         </td>
                         <td className="px-3 py-2">{item.ip_address}</td>
+                        <td className="px-3 py-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleViewDetails(item.poi_id)}
+                          >
+                            <Eye className="w-4 h-4 mr-1" />
+                            Voir détails
+                          </Button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -188,6 +205,18 @@ export default function History() {
           </CardContent>
         </Card>
       </div>
+
+      {selectedPlace && (
+        <PlaceDetailModal
+          place={selectedPlace}
+          open={detailModalOpen}
+          onClose={() => {
+            setDetailModalOpen(false);
+            setSelectedPlace(null);
+          }}
+          // Pas de onSuccess car on n'a pas besoin de rafraîchir l'historique
+        />
+      )}
     </AdminLayout>
   );
 }

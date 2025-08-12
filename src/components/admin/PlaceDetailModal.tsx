@@ -1,5 +1,5 @@
 // src/components/admin/PlaceDetailModal.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Place } from "@/types/places";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { PlacesAPI } from "@/services/api";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext"; // Importer useAuth
+
 // Import des composants steps
 import { GeneralStep } from "./place-steps/GeneralStep";
 import { ImagesStep } from "./place-steps/ImagesStep";
@@ -35,20 +37,22 @@ interface PlaceDetailModalProps {
 
 export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetailModalProps) {
   const [currentStep, setCurrentStep] = useState(1);
-  // Ajout de l'état de chargement spécifique pour l'ActionStep
   const [isActionLoading, setIsActionLoading] = useState(false);
-  // Les états reason et comment ne semblent pas utilisés directement ici,
-  // ils sont gérés dans ActionStep. On les retire d'ici.
-  // const [reason, setReason] = useState("");
-  // const [comment, setComment] = useState("");
-
+  const [ipAddress, setIpAddress] = useState<string | undefined>(undefined);
   const { toast } = useToast();
+  const { user } = useAuth(); // Utiliser le hook d'authentification
 
-  // Déterminer le nombre total d'étapes en fonction du statut
+  // Récupérer l'adresse IP au montage
+  useEffect(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => setIpAddress(data.ip))
+      .catch(() => setIpAddress(undefined));
+  }, []);
+
   const isPendingOrSync = place.validation_status === 'pending' || place.validation_status === 'synchronized';
   const totalSteps = isPendingOrSync ? 7 : 6;
 
-  // Inclure ActionStep dans le tableau
   const stepComponents = [
     GeneralStep,
     ImagesStep,
@@ -74,11 +78,14 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
     }
   };
 
-  // Fonction de validation passée à ActionStep
   const handleValidate = async (placeId: number) => {
-    setIsActionLoading(true); // Utiliser l'état local pour l'ActionStep
+    if (!user?.id) {
+      toast({ title: "Utilisateur non authentifié", variant: "destructive" });
+      return;
+    }
+    setIsActionLoading(true);
     try {
-      await PlacesAPI.approvePlace(placeId, 2, "ip");
+      await PlacesAPI.approvePlace(placeId, user.id, ipAddress);
       toast({ 
         title: "Lieu validé", 
         description: `${place.name} a été validé avec succès` 
@@ -93,20 +100,24 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
         variant: "destructive" 
       });
     } finally {
-      setIsActionLoading(false); // Utiliser l'état local pour l'ActionStep
+      setIsActionLoading(false);
     }
   };
 
-  // Fonction de rejet passée à ActionStep
-  // Note: reason et comment sont gérés par ActionStep, pas besoin de les passer ici
   const handleReject = async (placeId: number, rejectReason: string, rejectComment: string) => {
+    if (!user?.id) {
+      toast({ title: "Utilisateur non authentifié", variant: "destructive" });
+      return;
+    }
     if (!rejectReason) {
       toast({ title: "Raison requise", variant: "destructive" });
       return;
     }
-    setIsActionLoading(true); // Utiliser l'état local pour l'ActionStep
+    setIsActionLoading(true);
     try {
-      await PlacesAPI.rejectPlace(placeId, rejectReason, 2, "ip");
+      // Concaténer le commentaire à la raison si le commentaire existe
+      const finalReason = rejectComment ? `${rejectReason}: ${rejectComment}` : rejectReason;
+      await PlacesAPI.rejectPlace(placeId, finalReason, user.id, ipAddress);
       toast({ 
         title: "Lieu rejeté", 
         description: `${place.name} a été rejeté` 
@@ -117,54 +128,42 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
       console.error("Erreur de rejet:", error);
       toast({ title: "Erreur", variant: "destructive" });
     } finally {
-      setIsActionLoading(false); // Utiliser l'état local pour l'ActionStep
+      setIsActionLoading(false);
     }
   };
 
-  // Fonction pour gérer le retour (nécessaire pour ActionStep)
   const handleBack = () => {
     setCurrentStep(currentStep - 1);
   };
 
   const handleClose = () => {
-    // Utiliser l'état local isActionLoading pour vérifier le chargement
     if (!isActionLoading) { 
       setCurrentStep(1);
-      // setReason(""); // Non nécessaire ici
-      // setComment(""); // Non nécessaire ici
       onClose();
     }
   };
 
-  // Obtenir le composant de l'étape courante
   const CurrentStepComponent = stepComponents[currentStep - 1];
-
-  // Vérifier si l'étape courante est l'ActionStep
   const isOnActionStep = isPendingOrSync && currentStep === 7;
 
-  // --- Rendu conditionnel refactorisé pour éviter les erreurs TS ---
   let stepContent;
-
   if (!CurrentStepComponent) {
     stepContent = <div>Étape non trouvée</div>;
   } else if (isOnActionStep) {
-    // Rendu spécifique pour ActionStep avec ErrorBoundary
     stepContent = (
       <ErrorBoundary>
         <ActionStep
           place={place}
           onValidate={handleValidate}
           onReject={handleReject}
-          loading={isActionLoading} // Utiliser l'état local
-          onBack={handleBack}       // Passer la fonction handleBack
+          loading={isActionLoading}
+          onBack={handleBack}
         />
       </ErrorBoundary>
     );
   } else {
-    // Rendu pour les autres étapes
     stepContent = <CurrentStepComponent place={place} />;
   }
-  // --- Fin du rendu conditionnel refactorisé ---
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -198,12 +197,11 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
                 </div>
               </div>
               <div className="flex gap-2">
-                {/* Boutons de navigation */}
                 <Button 
                   size="sm" 
                   variant="outline" 
                   onClick={() => setCurrentStep(Math.max(1, currentStep - 1))} 
-                  disabled={currentStep === 1 || isActionLoading} // Utiliser l'état local
+                  disabled={currentStep === 1 || isActionLoading}
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </Button>
@@ -211,7 +209,7 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
                   size="sm" 
                   variant="outline" 
                   onClick={() => setCurrentStep(Math.min(totalSteps, currentStep + 1))} 
-                  disabled={currentStep === totalSteps || isActionLoading} // Utiliser l'état local
+                  disabled={currentStep === totalSteps || isActionLoading}
                 >
                   <ChevronRight className="w-4 h-4" />
                 </Button>
@@ -222,7 +220,6 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
         
         <div className="space-y-6">
           <div className="min-h-[400px]">
-            {/* Rendre le contenu de l'étape calculé ci-dessus */}
             {stepContent}
           </div>
         </div>

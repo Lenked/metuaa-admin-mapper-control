@@ -1,7 +1,7 @@
 import { PlacesResponse, PlaceFilter } from '@/types/places';
 
 // Nouvelle configuration pour l'API locale
-const API_BASE_URL = 'http://localhost:8001'; // À modifier facilement plus tard
+const API_BASE_URL = 'http://156.67.104.166:8000'; // À modifier facilement plus tard
 const API_KEY_SESSION = 'b8a7c8e9f0d1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7';
 
 const getHeaders = () => ({
@@ -11,7 +11,7 @@ const getHeaders = () => ({
 
 export class PlacesAPI {
   // Appels au backend local avec pagination
-  static async getPendingPois(skip = 0, limit = 100): Promise<any> {
+  static async getPendingPois(skip = 0, limit = 100): Promise<any[]> {
     try {
       const response = await fetch(`${API_BASE_URL}/api/pois/pending?skip=${skip}&limit=${limit}`, {
         method: 'GET',
@@ -25,7 +25,7 @@ export class PlacesAPI {
     }
   }
 
-  static async getAllPois(skip = 0, limit = 100): Promise<any> {
+  static async getAllPois(skip = 0, limit = 100): Promise<any[]> {
     try {
       const response = await fetch(`${API_BASE_URL}/api/pois/all?skip=${skip}&limit=${limit}`, {
         method: 'GET',
@@ -39,7 +39,7 @@ export class PlacesAPI {
     }
   }
 
-  static async getApprovedPois(skip = 0, limit = 100): Promise<any> {
+  static async getApprovedPois(skip = 0, limit = 100): Promise<any[]> {
     try {
       const response = await fetch(`${API_BASE_URL}/api/pois/approved?skip=${skip}&limit=${limit}`, {
         method: 'GET',
@@ -53,7 +53,7 @@ export class PlacesAPI {
     }
   }
 
-  static async getRejectedPois(skip = 0, limit = 100): Promise<any> {
+  static async getRejectedPois(skip = 0, limit = 100): Promise<any[]> {
     try {
       const response = await fetch(`${API_BASE_URL}/api/pois/rejected?skip=${skip}&limit=${limit}`, {
         method: 'GET',
@@ -169,4 +169,3 @@ export class PlacesAPI {
     }
   }
 }
-

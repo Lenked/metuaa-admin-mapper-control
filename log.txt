@@ -1,0 +1,57 @@
+react-dom.development.js:22878  Uncaught NotFoundError: Failed to execute 'insertBefore' on 'Node': The node before which the new node is to be inserted is not a child of this node.
+    at insertBefore (react-dom.development.js:11088:18)
+    at insertOrAppendPlacementNode (react-dom.development.js:23939:7)
+    at insertOrAppendPlacementNode (react-dom.development.js:23947:7)
+    at insertOrAppendPlacementNode (react-dom.development.js:23947:7)
+    at commitPlacement (react-dom.development.js:23883:9)
+    at commitReconciliationEffects (react-dom.development.js:24630:7)
+    at commitMutationEffectsOnFiber (react-dom.development.js:24333:9)
+    at recursivelyTraverseMutationEffects (react-dom.development.js:24312:7)
+    at commitMutationEffectsOnFiber (react-dom.development.js:24385:9)
+    at recursivelyTraverseMutationEffects (react-dom.development.js:24312:7)
+hook.js:608  The above error occurred in the <LoaderCircle> component:
+
+    at http://localhost:8080/node_modules/.vite/deps/lucide-react.js?v=dfd0adff:1615:8
+    at button
+    at _c (http://localhost:8080/src/components/ui/button.tsx:38:55)
+    at div
+    at div
+    at _c8 (http://localhost:8080/src/components/ui/card.tsx:84:61)
+    at div
+    at _c (http://localhost:8080/src/components/ui/card.tsx:12:53)
+    at section
+    at main
+    at main
+    at div
+    at div
+    at div
+    at Provider (http://localhost:8080/node_modules/.vite/deps/chunk-RJPHUGZC.js?v=dfd0adff:48:15)
+    at TooltipProvider (http://localhost:8080/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=dfd0adff:58:5)
+    at http://localhost:8080/src/components/ui/sidebar.tsx:39:72
+    at AdminLayout (http://localhost:8080/src/components/admin/AdminLayout.tsx?t=1755005528189:16:31)
+    at Settings (http://localhost:8080/src/pages/Settings.tsx:22:22)
+    at ProtectedRoute (http://localhost:8080/src/components/auth/ProtectedRoute.tsx?t=1755003053750:15:27)
+    at RenderedRoute (http://localhost:8080/node_modules/.vite/deps/react-router-dom.js?v=dfd0adff:4069:5)
+    at Routes (http://localhost:8080/node_modules/.vite/deps/react-router-dom.js?v=dfd0adff:4508:5)
+    at Router (http://localhost:8080/node_modules/.vite/deps/react-router-dom.js?v=dfd0adff:4451:15)
+    at BrowserRouter (http://localhost:8080/node_modules/.vite/deps/react-router-dom.js?v=dfd0adff:5196:5)
+    at Provider (http://localhost:8080/node_modules/.vite/deps/chunk-RJPHUGZC.js?v=dfd0adff:48:15)
+    at TooltipProvider (http://localhost:8080/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=dfd0adff:58:5)
+    at QueryClientProvider (http://localhost:8080/node_modules/.vite/deps/@tanstack_react-query.js?v=dfd0adff:2794:3)
+    at App
+    at AuthProvider (http://localhost:8080/src/contexts/AuthContext.tsx?t=1755003053750:22:32)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+overrideMethod @ hook.js:608
+react-dom.development.js:12056  Uncaught NotFoundError: Failed to execute 'insertBefore' on 'Node': The node before which the new node is to be inserted is not a child of this node.
+    at insertBefore (react-dom.development.js:11088:18)
+    at insertOrAppendPlacementNode (react-dom.development.js:23939:7)
+    at insertOrAppendPlacementNode (react-dom.development.js:23947:7)
+    at insertOrAppendPlacementNode (react-dom.development.js:23947:7)
+    at commitPlacement (react-dom.development.js:23883:9)
+    at commitReconciliationEffects (react-dom.development.js:24630:7)
+    at commitMutationEffectsOnFiber (react-dom.development.js:24333:9)
+    at recursivelyTraverseMutationEffects (react-dom.development.js:24312:7)
+    at commitMutationEffectsOnFiber (react-dom.development.js:24385:9)
+    at recursivelyTraverseMutationEffects (react-dom.development.js:24312:7)

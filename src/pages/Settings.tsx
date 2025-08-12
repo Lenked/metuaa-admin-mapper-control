@@ -84,11 +84,15 @@ export default function Settings() {
     setStartingSync(true);
     try {
       await PlacesAPI.syncPoisFromOdoo();
-      toast({ title: "Synchronisation lancée", description: "La synchronisation Odoo a démarré en arrière-plan." });
+      setTimeout(() => {
+        toast({ title: "Synchronisation lancée", description: "La synchronisation Odoo a démarré en arrière-plan." });
+      }, 0);
       setStatus("running");
       intervalRef.current = window.setInterval(fetchStatus, 5000);
     } catch (e: any) {
-      toast({ title: "Échec du démarrage", description: e?.message || "Impossible de lancer la synchronisation.", variant: "destructive" });
+      setTimeout(() => {
+        toast({ title: "Échec du démarrage", description: e?.message || "Impossible de lancer la synchronisation.", variant: "destructive" });
+      }, 0);
     } finally {
       setStartingSync(false);
     }

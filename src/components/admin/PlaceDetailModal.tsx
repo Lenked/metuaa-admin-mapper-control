@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -167,8 +168,8 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-w-4xl max-h-[90vh] flex flex-col p-0">
+        <DialogHeader className="p-6 pb-4 border-b">
           <div className="flex items-start justify-between">
             <div className="space-y-2">
               <DialogTitle className="flex items-center gap-2">
@@ -196,33 +197,38 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
                   ))}
                 </div>
               </div>
-              <div className="flex gap-2">
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  onClick={() => setCurrentStep(Math.max(1, currentStep - 1))} 
-                  disabled={currentStep === 1 || isActionLoading}
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </Button>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
-                  onClick={() => setCurrentStep(Math.min(totalSteps, currentStep + 1))} 
-                  disabled={currentStep === totalSteps || isActionLoading}
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </div>
             </div>
           </div>
         </DialogHeader>
         
-        <div className="space-y-6">
+        <div className="flex-grow overflow-y-auto p-6">
           <div className="min-h-[400px]">
             {stepContent}
           </div>
         </div>
+
+        {/* Navigation inférieure */}
+        {!isOnActionStep && (
+          <DialogFooter className="border-t p-4 flex justify-between w-full">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              onClick={() => setCurrentStep(Math.max(1, currentStep - 1))} 
+              disabled={currentStep === 1 || isActionLoading}
+            >
+              <ChevronLeft className="w-5 h-5 mr-2" />
+              Précédent
+            </Button>
+            <Button 
+              size="lg" 
+              onClick={() => setCurrentStep(Math.min(totalSteps, currentStep + 1))} 
+              disabled={currentStep === totalSteps || isActionLoading}
+            >
+              Suivant
+              <ChevronRight className="w-5 h-5 ml-2" />
+            </Button>
+          </DialogFooter>
+        )}
       </DialogContent>
     </Dialog>
   );

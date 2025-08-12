@@ -34,7 +34,10 @@ export class OdooAPI {
       const domain = encodeURIComponent(`[('id','=','${id}')]`);
       const response = await fetch(`${API_BASE_URL}/res.partner/search?domain=${domain}`, {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        body: JSON.stringify({
+          db: "metua_erp_db"
+        })
       });
       
       if (!response.ok) {

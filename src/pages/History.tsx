@@ -65,13 +65,19 @@ export default function History() {
         if (id && !newModeratorInfos[id]) {
           newLoadingModerators[id] = true;
           try {
-            const res = await OdooAPI.getUserInfoWithId(id);
+            // On s'assure que l'ID est un nombre
+            const numericId = typeof id === 'string' ? parseInt(id, 10) : id;
+            if (isNaN(numericId)) {
+                newModeratorInfos[id] = null;
+                return;
+            }
+            const res = await OdooAPI.getUserInfoWithId(numericId);
             if (res && res.data && res.data.length > 0) {
               newModeratorInfos[id] = res.data[0];
             } else {
               newModeratorInfos[id] = null;
             }
-          } catch {
+          } catch(err) {
             newModeratorInfos[id] = null;
           } finally {
             newLoadingModerators[id] = false;
@@ -177,7 +183,7 @@ export default function History() {
                           ) : moderatorInfos[item.performed_by] ? (
                             <span className="font-semibold">{moderatorInfos[item.performed_by].name}</span>
                           ) : (
-                            <span className="text-xs text-muted-foreground flex items-center gap-1"><User className="w-3 h-3" />Inconnu</span>
+                            <span className="text-xs text-muted-foreground flex items-center gap-1"><User className="w-3 h-3" />Modérateur #{item.performed_by}</span>
                           )}
                         </td>
                         <td className="px-3 py-2">{item.ip_address}</td>

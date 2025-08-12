@@ -97,6 +97,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       });
     
       const data = await response.json();
+      console.log(data);
 
       if (data && data.data) {
         const normalizedUser = normalizeUserData(data.data);

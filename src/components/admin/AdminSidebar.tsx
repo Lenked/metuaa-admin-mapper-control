@@ -1,4 +1,4 @@
-import { MapPin, BarChart3, Settings, History, Users } from "lucide-react";
+import { MapPin, BarChart3, Settings, History } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -28,11 +28,6 @@ const navigationItems = [
     title: "Historique",
     url: "/history",
     icon: History,
-  },
-  {
-    title: "Utilisateurs",
-    url: "/users",
-    icon: Users,
   },
   {
     title: "Paramètres",

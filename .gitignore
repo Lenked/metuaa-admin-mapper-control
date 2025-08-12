@@ -27,3 +27,6 @@ res.json
 
 .history/
 .history
+
+.env.development
+.env.production

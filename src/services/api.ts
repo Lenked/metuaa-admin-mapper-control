@@ -1,7 +1,7 @@
 import { PlacesResponse, PlaceFilter } from '@/types/places';
 
 // Nouvelle configuration pour l'API locale
-const API_BASE_URL = 'http://156.67.104.166:8000'; // À modifier facilement plus tard
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const API_KEY_SESSION = 'b8a7c8e9f0d1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7';
 
 const getHeaders = () => ({

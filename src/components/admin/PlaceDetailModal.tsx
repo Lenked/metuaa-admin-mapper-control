@@ -86,10 +86,25 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
     }
     setIsActionLoading(true);
     try {
+      // Étape 1: Vérifier si le PlusCode existe déjà avec tag=null
+      const plusCodeExists = await PlacesAPI.checkPlusCodeExists(place.address_plus_code, null);
+      
+      // Déterminer le tag à utiliser
+      let tagToUse = null;
+      if (plusCodeExists) {
+        // Si le pluscode existe déjà avec tag=null, utiliser le nom de l'utilisateur comme tag
+        tagToUse = user.name || user.email || `user_${user.id}`;
+      }
+      
+      // Étape 2: Insérer le PlusCode avec le tag approprié
+      await PlacesAPI.insertPlusCode(place, tagToUse);
+      
+      // Étape 3: Valider le lieu
       await PlacesAPI.approvePlace(placeId, user.id, ipAddress);
+      
       toast({ 
         title: "Lieu validé", 
-        description: `${place.name} a été validé avec succès` 
+        description: `${place.name} a été validé et son PlusCode enregistré.` 
       });
       onClose();
       onSuccess?.();
@@ -97,7 +112,7 @@ export function PlaceDetailModal({ place, open, onClose, onSuccess }: PlaceDetai
       console.error("Erreur de validation:", error);
       toast({ 
         title: "Erreur", 
-        description: "Impossible de valider le lieu", 
+        description: "Impossible de valider le lieu ou d'insérer le PlusCode.", 
         variant: "destructive" 
       });
     } finally {

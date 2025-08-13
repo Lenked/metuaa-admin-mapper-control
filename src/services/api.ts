@@ -1,7 +1,8 @@
-import { PlacesResponse, PlaceFilter } from '@/types/places';
+import { PlacesResponse, PlaceFilter, Place } from '@/types/places';
 
 // Nouvelle configuration pour l'API locale
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const PLUSCODE_API_BASE_URL = 'http://BI.LEWOOTRACK.COM:5001/api/pluscode';
 const API_KEY_SESSION = 'b8a7c8e9f0d1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7';
 
 const getHeaders = () => ({
@@ -179,6 +180,84 @@ export class PlacesAPI {
     } catch (error) {
       console.error('Error fetching sync status:', error);
       throw error;
+    }
+  }
+
+  // Méthode pour vérifier si un PlusCode existe avec un tag spécifique
+  static async checkPlusCodeExists(plus_code: string, tag: string | null): Promise<boolean> {
+    try {
+      const body = {
+        plus_code,
+        tag
+      };
+
+      const response = await fetch(`${PLUSCODE_API_BASE_URL}/check`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.exists;
+    } catch (error) {
+      console.error('Error checking PlusCode existence:', error);
+      throw error;
+    }
+  }
+
+  // Nouvelle méthode pour insérer un PlusCode
+  static async insertPlusCode(place: Place, tag?: string): Promise<any> {
+    const {
+        address_plus_code,
+        properties_category,
+        name,
+        properties_subcategory,
+        id
+    } = place;
+
+    if (!address_plus_code) {
+        console.warn(`Skipping PlusCode insertion for place ID ${id}: plus_code is missing.`);
+        return { success: true, message: "No plus_code to insert." };
+    }
+
+    
+    const body = {
+        plus_code: address_plus_code,
+        tag: tag !== undefined ? tag : (properties_category || ''), // Utiliser le tag fourni ou la catégorie par défaut
+        custom_fields: {
+            description: name,
+            categorie: properties_category,
+            sous_categorie: properties_subcategory,
+            id_interne: id
+        }
+    };
+
+    try {
+        const response = await fetch(`${PLUSCODE_API_BASE_URL}/insert`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }, // Pas de clé API pour cette API externe
+            body: JSON.stringify(body)
+        });
+
+        // Si le code existe déjà (409), on considère que c'est un succès pour notre workflow
+        if (response.status === 409) {
+            console.log(`PlusCode ${address_plus_code} already exists. Continuing.`);
+            return await response.json();
+        }
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response' }));
+            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message || 'Unknown error'}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error inserting PlusCode:', error);
+        throw error;
     }
   }
 }

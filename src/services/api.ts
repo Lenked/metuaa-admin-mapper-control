@@ -228,12 +228,9 @@ export class PlacesAPI {
     const body = {
         plus_code: address_plus_code,
         tag: tag !== undefined ? tag : (properties_category || ''), // Utiliser le tag fourni ou la catégorie par défaut
-        custom_fields: {
-            description: name,
-            categorie: properties_category,
-            sous_categorie: properties_subcategory,
-            id_interne: id
-        }
+        // Nouveau champ a ajouté 
+        name: name,
+        // oliglatoire pour le pluscode_formatted_address_name
     };
 
     try {
